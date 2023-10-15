@@ -2,7 +2,7 @@
 @section('content')
 <div class="card card-outline card-primary">
     <div class="card-header text-center">
-      <a href="{{route('welcome')}}" class="h1"><b>Plan de Adquisiciones 2022</b></a>
+      <a href="{{route('welcome')}}" class="h1"><b>Plan de Adquisiciones 2023</b></a>
     </div>
     <div class="card-body">
       <p class="login-box-msg">Registrarte</p>

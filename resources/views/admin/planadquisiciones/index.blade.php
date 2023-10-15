@@ -55,7 +55,7 @@
                     <table id="example2" class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>SIIPAA2022-</th>                                
+                                <th>SIIPAA2023-</th>                                
                                 <th>Fecha Estimada de Inicio del Proceso(Mes)</th>
                                 <th>Duración Estimada del Contrato(Número de Mes(es))</th>
                                 <th>Modalidad de Selección </th>

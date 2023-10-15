@@ -1,7 +1,7 @@
 <table >
     <thead>
         <tr>
-            <th>SIIPAA2022-</th>
+            <th>SIIPAA2023-</th>
             <th>Descripción del Objeto contractual</th>
             <th>Fecha estimada de inicio del proceso(mes)</th>
             <th>Duración estimada del contrato(número de mes(es))</th>
