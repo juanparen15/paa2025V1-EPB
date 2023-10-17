@@ -199,11 +199,11 @@
             <a href="{{route('planadquisiciones.index')}}" class="btn btn-success">Finalizar</a>
 
 
-            @can('agregar_producto')
+            {{-- @can('agregar_producto') --}}
             <a class="btn btn-primary float-right" href="{{route('agregar_producto', $planadquisicione)}}">
                  Agregar producto
              </a>
-            @endcan 
+            {{-- @endcan  --}}
 
         </div>
      

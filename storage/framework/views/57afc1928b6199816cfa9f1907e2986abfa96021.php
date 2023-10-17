@@ -59,7 +59,7 @@
                     <table id="example2" class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>SIIPAA2022-</th>                                
+                                <th>SIIPAA2023-</th>                                
                                 <th>Fecha Estimada de Inicio del Proceso(Mes)</th>
                                 <th>Duración Estimada del Contrato(Número de Mes(es))</th>
                                 <th>Modalidad de Selección </th>
@@ -111,12 +111,12 @@
                                         <?php echo csrf_field(); ?>
                                         <?php echo method_field('delete'); ?>
 
-                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('agregar_producto')): ?>
+                                        
                                         <a class="btn btn-primary btn-sm"
                                             href="<?php echo e(route('agregar_producto', $planadquisicion)); ?>">
                                             Agregar producto
                                         </a>
-                                        <?php endif; ?>
+                                        
 
                                        
 
