@@ -62,15 +62,15 @@
       </div>  --}}
       <!-- /.social-auth-links -->
 
-      <p class="mb-1">
+      {{-- <p class="mb-1">
         @if (Route::has('password.request'))
         <a href="{{ route('password.request') }}">Olvidé mi contraseña</a>
         @endif
-      </p>
-      <p class="mb-0">
+      </p> --}}
+      {{-- <p class="mb-0">
         <a href="{{ route('register') }}" class="text-center">Crear cuenta nueva</a>
       </p>
-    </div>
+    </div> --}}
     <!-- /.card-body -->
 </div>
 @endsection

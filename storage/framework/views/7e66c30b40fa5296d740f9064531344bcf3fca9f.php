@@ -84,9 +84,7 @@
                     <li><a href="<?php echo e(url('/home')); ?>">Mi Cuenta</a></li>     
                     <?php else: ?>
                     <li><a class="btn btn-outline-primary" style="padding:5px" href="<?php echo e(route('login')); ?>">Iniciar Sesión</a></li>     
-                    <?php if(Route::has('register')): ?>
-                    <li><a class="btn btn-primary" style="padding:5px" href="<?php echo e(route('register')); ?>">Registrarte</a></li>            
-                    <?php endif; ?>
+                    
                     <?php endif; ?>
                       
                     <?php endif; ?>

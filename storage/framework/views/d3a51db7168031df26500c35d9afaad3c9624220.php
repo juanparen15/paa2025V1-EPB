@@ -82,15 +82,8 @@ unset($__errorArgs, $__bag); ?>
       
       <!-- /.social-auth-links -->
 
-      <p class="mb-1">
-        <?php if(Route::has('password.request')): ?>
-        <a href="<?php echo e(route('password.request')); ?>">Olvidé mi contraseña</a>
-        <?php endif; ?>
-      </p>
-      <p class="mb-0">
-        <a href="<?php echo e(route('register')); ?>" class="text-center">Crear cuenta nueva</a>
-      </p>
-    </div>
+      
+      
     <!-- /.card-body -->
 </div>
 <?php $__env->stopSection(); ?>
