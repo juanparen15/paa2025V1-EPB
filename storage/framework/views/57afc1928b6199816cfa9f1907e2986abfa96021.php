@@ -131,9 +131,6 @@
                                             href="<?php echo e(route('planadquisiciones.edit', $planadquisicion)); ?>">Editar</a>
                                         <?php endif; ?>
 
-                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planadquisiciones.destroy')): ?>
-                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                        <?php endif; ?>
                                     </form>
                                 </td>
                             </tr>

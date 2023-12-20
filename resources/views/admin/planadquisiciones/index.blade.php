@@ -131,10 +131,10 @@
                                         <a class="btn btn-primary btn-sm"
                                             href="{{route('planadquisiciones.edit', $planadquisicion)}}">Editar</a>
                                         @endcan
-
+{{-- 
                                         @can('planadquisiciones.destroy')
                                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                        @endcan
+                                        @endcan --}}
                                     </form>
                                 </td>
                             </tr>
