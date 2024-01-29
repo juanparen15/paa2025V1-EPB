@@ -48,7 +48,7 @@
 
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planadquisiciones.export')): ?>
                         <a href="<?php echo e(route('planadquisiciones.export')); ?>" class="btn btn-success">
-                            <i class="far fa-file-excel"></i>  <i class="fas fa-file-export"></i> Exportar Todo
+                            <i class="far fa-file-excel"></i> Exportar Todo
                         </a>
                         <?php endif; ?>
                     </div>

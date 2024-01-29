@@ -35,7 +35,7 @@
 
                     <div class="form-group">
                         <label for="segmento_id">Segmentos</label>
-                        <select id="segmento_id" class="form-control select2" required>
+                        <select id="segmento_id" name="segmento_id" class="form-control select2" required>
                             <option value="" disabled selected> -- Seleccione un Segmento --</option>
                             @foreach ($segmentos as $segmento)
                                 <option value="{{ $segmento->id }}">{{ $segmento->id }}
@@ -45,14 +45,14 @@
                     </div>
                     <div class="form-group">
                         <label for="familia_id">Familias</label>
-                        <select id="familia_id" class="form-control select2" required>
+                        <select id="familia_id" name="familia_id" class="form-control select2" required>
                             <option value="" disabled selected> -- Seleccione una Familia --</option>
 
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="clase_id">Clases</label>
-                        <select id="clase_id" class="form-control select2" required>
+                        <select id="clase_id" name="clase_id" class="form-control select2" required>
                             <option value="" disabled selected> -- Seleccione una Clase --</option>
 
                         </select>
@@ -94,31 +94,31 @@
 
     <script>
         var segmento_id = $('#segmento_id');
-        var familias_id = $('#familias_id');
+        var familia_id = $('#familia_id');
         var clase_id = $('#clase_id');
+        var producto_id = $('#producto_id');
+
 
         $(document).ready(function() {
             segmento_id.change(function() {
                 var segmento_id = $(this).val();
                 if (segmento_id) {
                     $.get('/get-familias/' + segmento_id, function(data) {
-                        $('#familias_id').empty();
-
-
-                        $('#familias_id').append(
-                            '<option disabled selected>-- Seleccione una Familia --</option>'
+                        $('#familia_id').empty();
+                        $('#familia_id').append(
+                            '<option disabled selected>-- Seleccione una Familias --</option>'
                         );
                         $.each(data, function(key, value) {
-                            $('#familias_id').append('<option value="' + value.id +
+                            $('#familia_id').append('<option value="' + value.id +
                                 '" name="' + value.detfamilia + '">' + value
                                 .detfamilia + '</option>');
                         });
                         // Selecciona automáticamente la primera opción
-                        $('#familias_id').val($('#familias_id option:first').val());
+                        $('#familia_id').val($('#familia_id option:first').val());
                     });
                 } else {
-                    // Si no se selecciona ninguna ciudad, limpia la lista de estandares
-                    $('#familias_id').empty();
+                    // Si no se selecciona ninguna, limpia la lista
+                    $('#familia_id').empty();
                 }
             });
         });
@@ -148,9 +148,7 @@
                 }
             });
         });
- 
-        var producto_id = $('#producto_id');
- 
+
         $(document).ready(function() {
             clase_id.change(function() {
                 var clase_id = $(this).val();

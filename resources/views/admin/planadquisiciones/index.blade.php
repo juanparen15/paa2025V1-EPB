@@ -44,7 +44,7 @@
 
                         @can('planadquisiciones.export')
                         <a href="{{route('planadquisiciones.export')}}" class="btn btn-success">
-                            <i class="far fa-file-excel"></i>  <i class="fas fa-file-export"></i> Exportar Todo
+                            <i class="far fa-file-excel"></i> Exportar Todo
                         </a>
                         @endcan
                     </div>
