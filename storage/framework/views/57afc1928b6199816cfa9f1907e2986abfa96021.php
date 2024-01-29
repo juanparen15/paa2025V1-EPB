@@ -59,7 +59,7 @@
                     <table id="example2" class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>SIIPAA2023-</th>                                
+                                <th>SIIPAA<?= date('Y') ?></th>                                
                                 <th>Fecha Estimada de Inicio del Proceso(Mes)</th>
                                 <th>Duración Estimada del Contrato(Número de Mes(es))</th>
                                 <th>Modalidad de Selección </th>
@@ -90,7 +90,7 @@
                                 <td><?php echo e($planadquisicion->mese->nommes); ?></td>
                                 <td><?php echo e($planadquisicion->duracont); ?></td>
                                 <td><?php echo e($planadquisicion->modalidade->detmodalidad); ?></td>
-                                <td><?php echo e($planadquisicion->fuente->detfuente); ?></td>
+                                <td><?php echo e($planadquisicion->fuentes); ?></td>
                                 <td><?php echo e($planadquisicion->valorestimadocont); ?></td>
                                 <td><?php echo e($planadquisicion->descripcioncont); ?></td>
                                 <td><?php echo e($planadquisicion->valorestimadovig); ?></td>

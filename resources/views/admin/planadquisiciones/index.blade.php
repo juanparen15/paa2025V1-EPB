@@ -86,7 +86,7 @@
                                 <td>{{$planadquisicion->mese->nommes}}</td>
                                 <td>{{$planadquisicion->duracont}}</td>
                                 <td>{{$planadquisicion->modalidade->detmodalidad}}</td>
-                                <td>{{$planadquisicion->fuente->detfuente}}</td>
+                                <td>{{$planadquisicion->fuentes}}</td>
                                 <td>{{$planadquisicion->valorestimadocont}}</td>
                                 <td>{{$planadquisicion->descripcioncont}}</td>
                                 <td>{{$planadquisicion->valorestimadovig}}</td>

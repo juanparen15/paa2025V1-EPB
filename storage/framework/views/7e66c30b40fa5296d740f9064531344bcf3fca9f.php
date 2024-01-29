@@ -29,9 +29,7 @@
 
     <?php echo Html::style('homeland/css/animate.css'); ?>
 
-
     <?php echo Html::style('homeland/fonts/flaticon/font/flaticon.css'); ?>
-
 
     <?php echo Html::style('homeland/css/fl-bigmug-line.css'); ?>
 

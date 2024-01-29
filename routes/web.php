@@ -86,9 +86,9 @@ Route::resource('requiproyectos', 'RequiproyectoController')->except([
 ])->names('admin.proyectos');
 Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('obtener_familias', 'AjaxController@obtener_familias')->name('obtener_familias');
-Route::get('obtener_clases', 'AjaxController@obtener_clases')->name('obtener_clases');
-Route::get('obtener_productos', 'AjaxController@obtener_productos')->name('obtener_productos');
+Route::get('/get-familias', 'AjaxController@obtener_familias')->name('obtener_familias');
+Route::get('/get-clases', 'AjaxController@obtener_clases')->name('obtener_clases');
+Route::get('/get-productos', 'AjaxController@obtener_productos')->name('obtener_productos');
 route::get('planadquisiciones/{planadquisicion}/agregar_producto', 'PlanadquisicioneController@agregar_producto')->name('agregar_producto');
 route::post('planadquisiciones/{planadquisicion}/agregar_producto_store', 'PlanadquisicioneController@agregar_producto_store')->name('agregar_producto_store');
 Route::resource('users', 'UserController')->names('users');

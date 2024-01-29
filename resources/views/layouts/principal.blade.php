@@ -20,9 +20,7 @@
     {!! Html::style('homeland/css/bootstrap-datepicker.css') !!}
     {!! Html::style('homeland/css/mediaelementplayer.css') !!}
     {!! Html::style('homeland/css/animate.css') !!}
-
     {!! Html::style('homeland/fonts/flaticon/font/flaticon.css') !!}
-
     {!! Html::style('homeland/css/fl-bigmug-line.css') !!}
 
     
