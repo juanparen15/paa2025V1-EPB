@@ -10,6 +10,7 @@
             <th>Valor total estimado</th>
             <th>Valor estimado en vigencia actual</th>
             <th>¿Se requieren vigencias futuras?</th>
+            <th>Estado de solicitud de vigencias futuras</th>
             <th>Área o Dependencia Resposables</th>
             <th>Código Banco De Programas Y Proyectos De Inversión Nacional--BPIN</th>
             <th>¿Se requiere POAI?</th>
@@ -33,6 +34,7 @@
             <td>{{$planadquisicion->valorestimadocont}}</td>
             <td>{{$planadquisicion->valorestimadovig}}</td>
             <td>{{$planadquisicion->requiproyecto->detproyeto}}</td>
+            <td>{{$planadquisicion->estadovigencia->detestadovigencia}}</td>
             <td>{{$planadquisicion->area->nomarea}}</td>
             <td>{{$planadquisicion->codbpim}}</td>
             <td>{{$planadquisicion->requipoai->detpoai}}</td>

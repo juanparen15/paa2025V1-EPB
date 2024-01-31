@@ -40,11 +40,7 @@
                     <h3 class="card-title">Listado Plan Adquisiciones</h3>
 
                     <div class="card-tools">
-                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planadquisiciones.create')): ?>
-                        <a href="<?php echo e(route('planadquisiciones.create')); ?>" class="btn btn-primary">
-                            <i class="fas fa-parking"></i>  Agregar Nuevo Plan Adquisicion
-                        </a>
-                        <?php endif; ?>
+                        
 
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planadquisiciones.export')): ?>
                         <a href="<?php echo e(route('planadquisiciones.export')); ?>" class="btn btn-success">
@@ -112,10 +108,6 @@
                                         <?php echo method_field('delete'); ?>
 
                                         
-                                        <a class="btn btn-primary btn-sm"
-                                            href="<?php echo e(route('agregar_producto', $planadquisicion)); ?>">
-                                            Agregar producto
-                                        </a>
                                         
 
                                        
@@ -126,10 +118,7 @@
                                         <?php endif; ?>
 
 
-                                        <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planadquisiciones.edit')): ?>
-                                        <a class="btn btn-primary btn-sm"
-                                            href="<?php echo e(route('planadquisiciones.edit', $planadquisicion)); ?>">Editar</a>
-                                        <?php endif; ?>
+                                        
 
                                     </form>
                                 </td>

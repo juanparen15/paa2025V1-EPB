@@ -36,11 +36,11 @@
                     <h3 class="card-title">Listado Plan Adquisiciones</h3>
 
                     <div class="card-tools">
-                        @can('planadquisiciones.create')
+                        {{-- @can('planadquisiciones.create')
                         <a href="{{route('planadquisiciones.create')}}" class="btn btn-primary">
                             <i class="fas fa-parking"></i>  Agregar Nuevo Plan Adquisicion
                         </a>
-                        @endcan
+                        @endcan --}}
 
                         @can('planadquisiciones.export')
                         <a href="{{route('planadquisiciones.export')}}" class="btn btn-success">
@@ -107,11 +107,11 @@
                                         @csrf
                                         @method('delete')
 
-                                        {{-- @can('agregar_producto') --}}
+                                        {{-- @can('agregar_producto')
                                         <a class="btn btn-primary btn-sm"
                                             href="{{route('agregar_producto', $planadquisicion)}}">
                                             Agregar producto
-                                        </a>
+                                        </a> --}}
                                         {{-- @endcan --}}
 
                                        {{--  @can('exportar_planadquisiciones_excel')
@@ -127,10 +127,10 @@
                                         @endcan
 
 
-                                        @can('planadquisiciones.edit')
+                                        {{-- @can('planadquisiciones.edit')
                                         <a class="btn btn-primary btn-sm"
                                             href="{{route('planadquisiciones.edit', $planadquisicion)}}">Editar</a>
-                                        @endcan
+                                        @endcan --}}
 {{-- 
                                         @can('planadquisiciones.destroy')
                                         <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>

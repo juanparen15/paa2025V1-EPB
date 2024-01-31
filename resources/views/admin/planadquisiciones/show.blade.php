@@ -180,7 +180,7 @@
                                     <td>{{$producto->detproducto}}</td>
                                     @can('retirar_producto')
                                     <td>
-                                             <a href="{{route('retirar_producto', [$planadquisicione,$producto])}}" class="btn btn-danger btn-sm">Eliminar</a>
+                                             {{-- <a href="{{route('retirar_producto', [$planadquisicione,$producto])}}" class="btn btn-danger btn-sm">Eliminar</a> --}}
                                     </td>
                                     @endcan 
                                 </tr>
@@ -200,10 +200,10 @@
 
 
             {{-- @can('agregar_producto') --}}
-            <a class="btn btn-primary float-right" href="{{route('agregar_producto', $planadquisicione)}}">
+            {{-- <a class="btn btn-primary float-right" href="{{route('agregar_producto', $planadquisicione)}}">
                  Agregar producto
              </a>
-            {{-- @endcan  --}}
+            @endcan --}}
 
         </div>
      
