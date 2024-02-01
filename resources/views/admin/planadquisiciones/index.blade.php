@@ -107,19 +107,19 @@
                                         @csrf
                                         @method('delete')
 
-                                        {{-- @can('agregar_producto')
+                                        {{-- @can('agregar_producto') --}}
                                         <a class="btn btn-primary btn-sm"
                                             href="{{route('agregar_producto', $planadquisicion)}}">
                                             Agregar producto
-                                        </a> --}}
+                                        </a>
                                         {{-- @endcan --}}
 
-                                       {{--  @can('exportar_planadquisiciones_excel')
+                                       {{-- @can('exportar_planadquisiciones_excel') --}}
                                         <a class="btn btn-success btn-sm"
                                             href="{{route('exportar_planadquisiciones_excel', $planadquisicion)}}">
                                             <i class="far fa-file-excel"></i> Exportar
                                         </a>
-                                        @endcan--}}
+                                        {{-- @endcan --}}
 
                                         @can('planadquisiciones.show')
                                         <a class="btn btn-info btn-sm"

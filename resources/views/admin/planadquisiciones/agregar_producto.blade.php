@@ -93,6 +93,7 @@
     })
 </script>
 
+<<<<<<< Updated upstream
 <script>
     var segmento_id = $('#segmento_id');
     var familia_id = $('#familia_id');
@@ -111,6 +112,37 @@
                 });
                 
             }
+=======
+    <script>
+        var segmento_id = $('#segmento_id');
+        var familia_id = $('#familia_id');
+        var clase_id = $('#clase_id');
+        var producto_id = $('#producto_id');
+
+
+        $(document).ready(function() {
+            segmento_id.change(function() {
+                var segmento_id = $(this).val();
+                if (segmento_id) {
+                    $.get('/get-familias/' + segmento_id, function(data) {
+                        $('#familia_id').empty();
+                        $('#familia_id').append(
+                            '<option disabled selected>-- Seleccione una Familia --</option>'
+                        );
+                        $.each(data, function(key, value) {
+                            $('#familia_id').append('<option value="' + value.id +
+                                '" name="' + value.detfamilia + '">' + value
+                                .detfamilia + '</option>');
+                        });
+                        // Selecciona automáticamente la primera opción
+                        $('#familia_id').val($('#familia_id option:first').val());
+                    });
+                } else {
+                    // Si no se selecciona ninguna, limpia la lista
+                    $('#familia_id').empty();
+                }
+            });
+>>>>>>> Stashed changes
         });
     });
 </script> 
