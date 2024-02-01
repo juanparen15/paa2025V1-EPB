@@ -27,24 +27,24 @@ class PlanadquisicioneController extends Controller
 {
     public function __construct()
     {
-
+        
         $this->middleware([
             'auth',
             'permission:planadquisiciones.index',
-
-
-        ]);
+         
+            
+            ]);
     }
     public function index()
     {
         if (auth()->user()->hasRole('Admin')) {
-            $planadquisiciones = Planadquisicione::get();
+            $planadquisiciones=Planadquisicione::get();
         } else {
-            $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
+            $planadquisiciones=Planadquisicione::where('user_id', auth()->user()->id)->get();
         }
-        return view('admin.planadquisiciones.index', compact('planadquisiciones'));
+        return view ('admin.planadquisiciones.index',compact('planadquisiciones'));
     }
-
+    
     public function create()
     {
         $productos = Producto::all();
@@ -60,56 +60,52 @@ class PlanadquisicioneController extends Controller
         $tipoprocesos = Tipoproceso::get();
         $tipozonas = Tipozona::get();
         $vigenfuturas = Vigenfutura::get();
-        return view('admin.planadquisiciones.create', compact('areas', 'estadovigencias', 'fuentes', 'meses', 'modalidades', 'requipoais', 'requiproyectos', 'tipoadquisiciones', 'tipoprioridades', 'tipoprocesos', 'tipozonas', 'vigenfuturas', 'productos'));
+        return view ('admin.planadquisiciones.create',compact('areas','estadovigencias','fuentes','meses','modalidades','requipoais','requiproyectos','tipoadquisiciones','tipoprioridades','tipoprocesos','tipozonas','vigenfuturas','productos'));
     }
-
+    
     public function store(Request $request)
     {
-
+       
         $request->validate([
-            'descripcioncont' => ['required'],
-            'valorestimadocont' => ['required'],
-            'valorestimadovig' => ['required'],
-            'duracont' => ['required'],
-            'codbpim' => ['required'],
-            // 'fuentes' => ['required'],
-            'area_id' => ['required'],
-            'vigenfutura_id' => ['required'],
-            'tipozona_id' => ['required'],
-            'estadovigencia_id' => ['required'],
-            'modalidade_id' => ['required'],
-            'tipoproceso_id' => ['required'],
-            'tipoadquisicione_id' => ['required'],
-            'requiproyecto_id' => ['required'],
-            'fuente_id' => ['required', 'array'],
-            'tipoprioridade_id' => ['required'],
-            'mese_id' => ['required'],
-            'requipoai_id' => ['required'],
+            'descripcioncont'=> ['required'],
+            'valorestimadocont'=> ['required'],
+            'valorestimadovig'=> ['required'],
+            'duracont'=> ['required'],
+            'codbpim'=> ['required'],
+            'area_id'=> ['required'],
+            'vigenfutura_id'=> ['required'],
+            'tipozona_id'=> ['required'],
+            'estadovigencia_id'=> ['required'],
+            'modalidade_id'=> ['required'],
+            'tipoproceso_id'=> ['required'],
+            'tipoadquisicione_id'=> ['required'],
+            'requiproyecto_id'=> ['required'],
+            'fuente_id'=> ['required'],
+            'tipoprioridade_id'=> ['required'],
+            'mese_id'=> ['required'],
+            'requipoai_id'=> ['required'],
         ]);
 
-        // Obtener los nombres de las fuentes seleccionadas
-        $fuentesSeleccionadas = Fuente::whereIn('id', $request->input('fuente_id'))->pluck('detfuente')->toArray();
+        $planadquisicione = Planadquisicione::create($request->all()+[
+            'user_id'=>auth()->user()->id,
+            'slug'=> Str::slug($request->descripcioncont , '-'),  
+        ]);
 
-        // Convertir los nombres a una cadena separada por comas
-        $fuentes = implode(', ', $fuentesSeleccionadas);
-
-        // Crear una nueva instancia del modelo y asignar valores
-        $planadquisicione = new Planadquisicione($request->all());
-        $planadquisicione->fuente_id = null; // Asegurar que fuente_id está vacío
-        $planadquisicione->fuentes = $fuentes;
-        $planadquisicione->user_id = auth()->user()->id;
-        $planadquisicione->slug = Str::slug($request->descripcioncont, '-');
-        $planadquisicione->save();
-
-        return redirect()->route('planadquisiciones.index')->with('flash', 'registrado');
+        // foreach ($request->producto_id as $key =>$product){
+        //     $results[] = array("producto_id" => $request->producto_id[$key]);
+        // }
+        // $planadquisicione->productos()->sync($results);
+        //planadquisicione_producto  create_planadquisicione_producto_table
+        return redirect()->route('planadquisiciones.index')->with('flash','registrado');
     }
 
+    
     public function show(Planadquisicione $planadquisicione)
     {
-        return view('admin.planadquisiciones.show', compact('planadquisicione'));
+        return view ('admin.planadquisiciones.show',compact('planadquisicione'));
     }
 
-
+    
     public function edit(Planadquisicione $planadquisicione)
     {
         $productos = Producto::all();
@@ -125,7 +121,7 @@ class PlanadquisicioneController extends Controller
         $tipoprocesos = Tipoproceso::get();
         $tipozonas = Tipozona::get();
         $vigenfuturas = Vigenfutura::get();
-        return view('admin.planadquisiciones.edit', compact(
+        return view ('admin.planadquisiciones.edit',compact(
             'productos',
             'areas',
             'estadovigencias',
@@ -138,87 +134,77 @@ class PlanadquisicioneController extends Controller
             'tipoprioridades',
             'tipoprocesos',
             'tipozonas',
-            'vigenfuturas',
-            'planadquisicione'
+            'vigenfuturas','planadquisicione'
         ));
     }
-
+    
     public function update(Request $request, Planadquisicione $planadquisicione)
     {
 
         $request->validate([
-            'descripcioncont' => ['required'],
-            'valorestimadocont' => ['required'],
-            'valorestimadovig' => ['required'],
-            'duracont' => ['required'],
-            'codbpim' => ['required'],
-            'area_id' => ['required'],
-            'vigenfutura_id' => ['required'],
-            'tipozona_id' => ['required'],
-            'estadovigencia_id' => ['required'],
-            'modalidade_id' => ['required'],
-            'tipoproceso_id' => ['required'],
-            'tipoadquisicione_id' => ['required'],
-            'requiproyecto_id' => ['required'],
-            'fuente_id' => ['required'],
-            'tipoprioridade_id' => ['required'],
-            'mese_id' => ['required'],
-            'requipoai_id' => ['required'],
+            'descripcioncont'=> ['required'],
+            'valorestimadocont'=> ['required'],
+            'valorestimadovig'=> ['required'],
+            'duracont'=> ['required'],
+            'codbpim'=> ['required'],
+            'area_id'=> ['required'],
+            'vigenfutura_id'=> ['required'],
+            'tipozona_id'=> ['required'],
+            'estadovigencia_id'=> ['required'],
+            'modalidade_id'=> ['required'],
+            'tipoproceso_id'=> ['required'],
+            'tipoadquisicione_id'=> ['required'],
+            'requiproyecto_id'=> ['required'],
+            'fuente_id'=> ['required'],
+            'tipoprioridade_id'=> ['required'],
+            'mese_id'=> ['required'],
+            'requipoai_id'=> ['required'],
         ]);
 
-        $fuentes = implode(',', $request->input('fuentes', []));
-
-        $planadquisicione = Planadquisicione::create($request->all() + [
-            'user_id' => auth()->user()->id,
-            'slug' => Str::slug($request->descripcioncont, '-'),
-            'fuentes' => $fuentes,
+        $planadquisicione->update($request->all()+[
+            'user_id'=>auth()->user()->id,
+            'slug'=> Str::slug($request->descripcioncont , '-'),  
         ]);
-
 
         // foreach ($request->producto_id as $key =>$product){
         //     $results[] = array("producto_id" => $request->producto_id[$key]);
         // }
         // $planadquisicione->productos()->sync($results);
 
-        return redirect()->route('planadquisiciones.index')->with('flash', 'actualizado');
+        return redirect()->route('planadquisiciones.index')->with('flash','actualizado');
     }
-
+    
     public function destroy(Planadquisicione $planadquisicion)
     {
         $planadquisicion->delete();
-        return redirect()->route('planadquisiciones.index')->with('flash', 'eliminado');
+        return redirect()->route('planadquisiciones.index')->with('flash','eliminado');
     }
 
-    public function retirar_producto(Planadquisicione $planadquisicione, Producto $producto)
-    {
+    public function retirar_producto(Planadquisicione $planadquisicione,Producto $producto){
         $producto_id = $producto->id;
-
+       
         $planadquisicione->productos()->detach($producto_id);
-        return redirect()->route('planadquisiciones.show', $planadquisicione)->with('flash', 'actualizado');
+        return redirect()->route('planadquisiciones.show', $planadquisicione)->with('flash','actualizado');
     }
 
-    public function exportar_planadquisiciones_excel(Planadquisicione $planadquisicion)
-    {
-
-        return Excel::download(new PlanadquisicioneExport($planadquisicion->id), 'plan_de_adquisicion' . $planadquisicion->id . '.xlsx');
+    public function exportar_planadquisiciones_excel(Planadquisicione $planadquisicion){
+        
+        return Excel::download(new PlanadquisicioneExport($planadquisicion->id), 'plan_de_adquisicion'.$planadquisicion->id.'.xlsx');
         // 
         // plan_de_adquisicion 
     }
-    public function agregar_producto(Planadquisicione $planadquisicion)
-    {
+    public function agregar_producto(Planadquisicione $planadquisicion){
         $segmentos = Segmento::all();
-        return view('admin.planadquisiciones.agregar_producto', compact('planadquisicion', 'segmentos'));
+        return view('admin.planadquisiciones.agregar_producto', compact('planadquisicion','segmentos'));
     }
-    public function agregar_producto_store(Request $request, Planadquisicione $planadquisicion)
-    {
+    public function agregar_producto_store(Request $request, Planadquisicione $planadquisicion){
         $planadquisicion->productos()->attach($request->producto_id);
-        return redirect()->route('planadquisiciones.show', $planadquisicion)->with('flash', 'actualizado');
+        return redirect()->route('planadquisiciones.show', $planadquisicion)->with('flash','actualizado');
     }
-    public function export()
-    {
-
-
+    public function export(){
+        
+        
 
         return Excel::download(new PlanadquisicioneAllExport, 'Plan de Adquisiciones en General.xlsx');
-    }
+    } 
 }
