@@ -36,11 +36,11 @@
                     <h3 class="card-title">Listado Plan Adquisiciones</h3>
 
                     <div class="card-tools">
-                        {{-- @can('planadquisiciones.create')
+                        {{-- @can('planadquisiciones.create') --}}
                         <a href="{{route('planadquisiciones.create')}}" class="btn btn-primary">
                             <i class="fas fa-parking"></i>  Agregar Nuevo Plan Adquisicion
                         </a>
-                        @endcan --}}
+                        {{-- @endcan --}}
 
                         @can('planadquisiciones.export')
                         <a href="{{route('planadquisiciones.export')}}" class="btn btn-success">
