@@ -36,15 +36,15 @@
                     <h3 class="card-title">Listado Plan Adquisiciones</h3>
 
                     <div class="card-tools">
-                        {{-- @can('planadquisiciones.create')
+                        {{-- @can('planadquisiciones.create') --}}
                         <a href="{{route('planadquisiciones.create')}}" class="btn btn-primary">
                             <i class="fas fa-parking"></i>  Agregar Nuevo Plan Adquisicion
                         </a>
-                        @endcan --}}
+                        {{-- @endcan --}}
 
                         @can('planadquisiciones.export')
                         <a href="{{route('planadquisiciones.export')}}" class="btn btn-success">
-                            <i class="far fa-file-excel"></i>  <i class="fas fa-file-export"></i> Exportar Todo
+                            <i class="far fa-file-excel"></i> Exportar Todo
                         </a>
                         @endcan
                     </div>
@@ -86,7 +86,7 @@
                                 <td>{{$planadquisicion->mese->nommes}}</td>
                                 <td>{{$planadquisicion->duracont}}</td>
                                 <td>{{$planadquisicion->modalidade->detmodalidad}}</td>
-                                <td>{{$planadquisicion->fuente->detfuente}}</td>
+                                <td>{{$planadquisicion->fuentes}}</td>
                                 <td>{{$planadquisicion->valorestimadocont}}</td>
                                 <td>{{$planadquisicion->descripcioncont}}</td>
                                 <td>{{$planadquisicion->valorestimadovig}}</td>
@@ -107,19 +107,19 @@
                                         @csrf
                                         @method('delete')
 
-                                        {{-- @can('agregar_producto')
+                                        {{-- @can('agregar_producto') --}}
                                         <a class="btn btn-primary btn-sm"
                                             href="{{route('agregar_producto', $planadquisicion)}}">
                                             Agregar producto
-                                        </a> --}}
+                                        </a>
                                         {{-- @endcan --}}
 
-                                       {{--  @can('exportar_planadquisiciones_excel')
+                                       {{-- @can('exportar_planadquisiciones_excel') --}}
                                         <a class="btn btn-success btn-sm"
                                             href="{{route('exportar_planadquisiciones_excel', $planadquisicion)}}">
                                             <i class="far fa-file-excel"></i> Exportar
                                         </a>
-                                        @endcan--}}
+                                        {{-- @endcan --}}
 
                                         @can('planadquisiciones.show')
                                         <a class="btn btn-info btn-sm"

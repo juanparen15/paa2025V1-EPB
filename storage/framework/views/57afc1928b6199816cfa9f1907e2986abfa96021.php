@@ -44,7 +44,7 @@
 
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planadquisiciones.export')): ?>
                         <a href="<?php echo e(route('planadquisiciones.export')); ?>" class="btn btn-success">
-                            <i class="far fa-file-excel"></i>  <i class="fas fa-file-export"></i> Exportar Todo
+                            <i class="far fa-file-excel"></i> Exportar Todo
                         </a>
                         <?php endif; ?>
                     </div>
@@ -55,7 +55,7 @@
                     <table id="example2" class="table table-hover text-nowrap">
                         <thead>
                             <tr>
-                                <th>SIIPAA2023-</th>                                
+                                <th>SIIPAA<?= date('Y') ?></th>                                
                                 <th>Fecha Estimada de Inicio del Proceso(Mes)</th>
                                 <th>Duración Estimada del Contrato(Número de Mes(es))</th>
                                 <th>Modalidad de Selección </th>
@@ -86,7 +86,7 @@
                                 <td><?php echo e($planadquisicion->mese->nommes); ?></td>
                                 <td><?php echo e($planadquisicion->duracont); ?></td>
                                 <td><?php echo e($planadquisicion->modalidade->detmodalidad); ?></td>
-                                <td><?php echo e($planadquisicion->fuente->detfuente); ?></td>
+                                <td><?php echo e($planadquisicion->fuentes); ?></td>
                                 <td><?php echo e($planadquisicion->valorestimadocont); ?></td>
                                 <td><?php echo e($planadquisicion->descripcioncont); ?></td>
                                 <td><?php echo e($planadquisicion->valorestimadovig); ?></td>
@@ -108,9 +108,18 @@
                                         <?php echo method_field('delete'); ?>
 
                                         
+                                        <a class="btn btn-primary btn-sm"
+                                            href="<?php echo e(route('agregar_producto', $planadquisicion)); ?>">
+                                            Agregar producto
+                                        </a>
                                         
 
                                        
+                                        <a class="btn btn-success btn-sm"
+                                            href="<?php echo e(route('exportar_planadquisiciones_excel', $planadquisicion)); ?>">
+                                            <i class="far fa-file-excel"></i> Exportar
+                                        </a>
+                                        
 
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planadquisiciones.show')): ?>
                                         <a class="btn btn-info btn-sm"
