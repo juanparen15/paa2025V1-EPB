@@ -1,3 +1,4 @@
+
 <?php $__env->startSection('title', 'Plan de adquisiciones'); ?>
 
 <?php $__env->startSection('content'); ?>

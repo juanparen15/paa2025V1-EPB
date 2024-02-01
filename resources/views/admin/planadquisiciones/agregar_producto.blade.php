@@ -30,6 +30,12 @@
         <section class="content">
             {!! Form::open(['route' => ['agregar_producto_store', $planadquisicion], 'method' => 'POST']) !!}
             <div class="card">
+                <div class="col-12 mb-2">
+                    {{-- <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel</a> --}}
+                    <a value="Consultar Productos" class="btn btn-primary float-left" href="https://www.colombiacompra.gov.co/clasificador-de-bienes-y-servicios">CONSULTAR PRODUCTOS</a>
+            
+                </div>
+                
 
                 <div class="card-body">
 
@@ -71,7 +77,7 @@
             <!-- /.card -->
             <div class="row">
                 <div class="col-12 mb-2">
-                    <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel</a>
+                    <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancelar</a>
                     <input type="submit" value="Registrar" class="btn btn-primary float-right">
                 </div>
             </div>
