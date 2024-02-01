@@ -92,29 +92,6 @@
         })
     </script>
 
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-<script>
-    var segmento_id = $('#segmento_id');
-    var familia_id = $('#familia_id');
-    segmento_id.change(function(){
-        $.ajax({
-            url: "{{route('obtener_familias')}}",
-            method: 'GET',
-            data:{
-                segmento_id: segmento_id.val(),
-            },
-            success: function(data){
-                familia_id.empty();
-                familia_id.append('<option disabled selected>-- Seleccione una Familia --</option>');
-                $.each(data, function(index, element){
-                    familia_id.append('<option value="'+ element.id +'">'+ element.id +"-"+ element.detfamilia +'</option>' )
-                });
-                
-            }
-=======
-=======
->>>>>>> b2d90603636daddfd5ea3e4ff42e85988f0a5d7c
     <script>
         var segmento_id = $('#segmento_id');
         var familia_id = $('#familia_id');
@@ -129,29 +106,24 @@
                     $.get('/get-familias/' + segmento_id, function(data) {
                         $('#familia_id').empty();
                         $('#familia_id').append(
-<<<<<<< HEAD
                             '<option disabled selected>-- Seleccione una Familia --</option>'
-=======
-                            '<option disabled selected>-- Seleccione una Familias --</option>'
->>>>>>> b2d90603636daddfd5ea3e4ff42e85988f0a5d7c
                         );
                         $.each(data, function(key, value) {
-                            $('#familia_id').append('<option value="' + value.id +
-                                '" name="' + value.detfamilia + '">' + value
+                            $('#familia_id').append('<option value="' +
+                                value.id +
+                                '" name="' + value.detfamilia +
+                                '">' + value
                                 .detfamilia + '</option>');
                         });
                         // Selecciona automáticamente la primera opción
-                        $('#familia_id').val($('#familia_id option:first').val());
+                        $('#familia_id').val($('#familia_id option:first')
+                            .val());
                     });
                 } else {
                     // Si no se selecciona ninguna, limpia la lista
                     $('#familia_id').empty();
                 }
             });
-<<<<<<< HEAD
->>>>>>> Stashed changes
-=======
->>>>>>> b2d90603636daddfd5ea3e4ff42e85988f0a5d7c
         });
 
         $(document).ready(function() {
@@ -166,8 +138,10 @@
                             '<option disabled selected>-- Seleccione una Clase --</option>'
                         );
                         $.each(data, function(key, value) {
-                            $('#clase_id').append('<option value="' + value.id +
-                                '" name="' + value.detclase + '">' + value
+                            $('#clase_id').append('<option value="' +
+                                value.id +
+                                '" name="' + value.detclase + '">' +
+                                value
                                 .detclase + '</option>');
                         });
                         // Selecciona automáticamente la primera opción
@@ -192,12 +166,15 @@
                             '<option disabled selected>-- Seleccione un Producto --</option>'
                         );
                         $.each(data, function(key, value) {
-                            $('#producto_id').append('<option value="' + value.id +
-                                '" name="' + value.detproducto + '">' + value
+                            $('#producto_id').append('<option value="' +
+                                value.id +
+                                '" name="' + value.detproducto +
+                                '">' + value
                                 .detproducto + '</option>');
                         });
                         // Selecciona automáticamente la primera opción
-                        $('#producto_id').val($('#producto_id option:first').val());
+                        $('#producto_id').val($('#producto_id option:first')
+                            .val());
                     });
                 } else {
                     // Si no se selecciona ninguna ciudad, limpia la lista de estandares

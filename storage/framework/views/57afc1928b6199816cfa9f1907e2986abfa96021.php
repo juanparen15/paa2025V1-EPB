@@ -108,9 +108,18 @@
                                         <?php echo method_field('delete'); ?>
 
                                         
+                                        <a class="btn btn-primary btn-sm"
+                                            href="<?php echo e(route('agregar_producto', $planadquisicion)); ?>">
+                                            Agregar producto
+                                        </a>
                                         
 
                                        
+                                        <a class="btn btn-success btn-sm"
+                                            href="<?php echo e(route('exportar_planadquisiciones_excel', $planadquisicion)); ?>">
+                                            <i class="far fa-file-excel"></i> Exportar
+                                        </a>
+                                        
 
                                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planadquisiciones.show')): ?>
                                         <a class="btn btn-info btn-sm"
