@@ -12,6 +12,7 @@ class Planadquisicione extends Model
         'valorestimadovig',
         'duracont',
         'codbpim',
+        'fuentes',
         'area_id',
         'vigenfutura_id',
         'tipozona_id',
@@ -44,7 +45,9 @@ class Planadquisicione extends Model
 
     //Relacion Uno a Muchos (Inversa)
     public function fuente(){
-        return $this->belongsTo(Fuente::class);
+
+        return $this->belongsTo(Fuente::class, 'fuente_id');
+        // return $this->belongsTo(Fuente::class);
     }
 
     //Relacion Uno a Muchos (Inversa)

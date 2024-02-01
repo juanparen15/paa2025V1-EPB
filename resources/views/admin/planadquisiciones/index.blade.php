@@ -44,7 +44,7 @@
 
                         @can('planadquisiciones.export')
                         <a href="{{route('planadquisiciones.export')}}" class="btn btn-success">
-                            <i class="far fa-file-excel"></i>  <i class="fas fa-file-export"></i> Exportar Todo
+                            <i class="far fa-file-excel"></i> Exportar Todo
                         </a>
                         @endcan
                     </div>
@@ -86,7 +86,7 @@
                                 <td>{{$planadquisicion->mese->nommes}}</td>
                                 <td>{{$planadquisicion->duracont}}</td>
                                 <td>{{$planadquisicion->modalidade->detmodalidad}}</td>
-                                <td>{{$planadquisicion->fuente->detfuente}}</td>
+                                <td>{{$planadquisicion->fuentes}}</td>
                                 <td>{{$planadquisicion->valorestimadocont}}</td>
                                 <td>{{$planadquisicion->descripcioncont}}</td>
                                 <td>{{$planadquisicion->valorestimadovig}}</td>
