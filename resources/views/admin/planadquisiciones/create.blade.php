@@ -240,26 +240,25 @@
                         </div>
                     </div>
 
+                   
                     <div class="col-md-4">
-                    <div class="form-group">
-                        <label>Fuentes de los Recursos:</label>
-                        @foreach ($fuentes as $fuente)
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" name="fuente_id[]" id="fuente_{{ $fuente->id }}" value="{{ $fuente->id }}" {{ in_array($fuente->id, old('fuente_id', [])) ? 'checked' : '' }}>
-                                <label class="form-check-label" for="fuente_{{ $fuente->id }}">
-                                {{ $fuente->detfuente }}
-                                </label>
-                            </div>
-                        @endforeach
-                        @error('fuentes')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
+                        <div class="form-group">
+                            <label for="fuente_id">Fuente de los Recursos:</label>
+                            <select class="select2 @error('fuente_id') is-invalid @enderror" name="fuente_id" id="fuente_id" style="width: 100%;">
+                                <option disabled selected>Seleccione la Fuente de los Recursos</option>
+                                @foreach ($fuentes as $fuentes)
+                                    <option value="{{ $fuentes->id }}"
+                                    {{ old('fuente_id') == $fuentes->id ? 'selected' : ''}}
+                                    >{{ $fuentes->detfuente }}</option>
+                                @endforeach
+                            </select>
+                            @error('fuente_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
                     </div>
-                    </div>
-                    
-                    
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="tipoprioridade_id">Tipo de Prioridad:</label>
