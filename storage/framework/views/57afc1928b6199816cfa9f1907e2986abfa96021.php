@@ -41,10 +41,6 @@
 
                     <div class="card-tools">
                         
-                        <a href="<?php echo e(route('planadquisiciones.create')); ?>" class="btn btn-primary">
-                            <i class="fas fa-parking"></i>  Agregar Nuevo Plan Adquisicion
-                        </a>
-                        
 
                         <?php if (app(\Illuminate\Contracts\Auth\Access\Gate::class)->check('planadquisiciones.export')): ?>
                         <a href="<?php echo e(route('planadquisiciones.export')); ?>" class="btn btn-success">

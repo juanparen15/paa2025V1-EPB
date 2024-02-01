@@ -363,40 +363,34 @@ unset($__errorArgs, $__bag); ?>
                         </div>
                     </div>
 
-                   
                     <div class="col-md-4">
-                        <div class="form-group">
-                            <label for="fuente_id">Fuente de los Recursos:</label>
-                            <select class="select2 <?php $__errorArgs = ['fuente_id'];
-$__bag = $errors->getBag($__errorArgs[1] ?? 'default');
-if ($__bag->has($__errorArgs[0])) :
-if (isset($message)) { $__messageOriginal = $message; }
-$message = $__bag->first($__errorArgs[0]); ?> is-invalid <?php unset($message);
-if (isset($__messageOriginal)) { $message = $__messageOriginal; }
-endif;
-unset($__errorArgs, $__bag); ?>" name="fuente_id" id="fuente_id" style="width: 100%;">
-                                <option disabled selected>Seleccione la Fuente de los Recursos</option>
-                                <?php $__currentLoopData = $fuentes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fuentes): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-                                    <option value="<?php echo e($fuentes->id); ?>"
-                                    <?php echo e(old('fuente_id') == $fuentes->id ? 'selected' : ''); ?>
+                    <div class="form-group">
+                        <label>Fuentes de los Recursos:</label>
+                        <?php $__currentLoopData = $fuentes; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $fuente): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="fuente_id[]" id="fuente_<?php echo e($fuente->id); ?>" value="<?php echo e($fuente->id); ?>" <?php echo e(in_array($fuente->id, old('fuente_id', [])) ? 'checked' : ''); ?>>
+                                <label class="form-check-label" for="fuente_<?php echo e($fuente->id); ?>">
+                                <?php echo e($fuente->detfuente); ?>
 
-                                    ><?php echo e($fuentes->detfuente); ?></option>
-                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-                            </select>
-                            <?php $__errorArgs = ['fuente_id'];
+                                </label>
+                            </div>
+                        <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                        <?php $__errorArgs = ['fuentes'];
 $__bag = $errors->getBag($__errorArgs[1] ?? 'default');
 if ($__bag->has($__errorArgs[0])) :
 if (isset($message)) { $__messageOriginal = $message; }
 $message = $__bag->first($__errorArgs[0]); ?>
-                                <span class="invalid-feedback" role="alert">
-                                    <strong><?php echo e($message); ?></strong>
-                                </span>
-                            <?php unset($message);
+                            <span class="invalid-feedback" role="alert">
+                                <strong><?php echo e($message); ?></strong>
+                            </span>
+                        <?php unset($message);
 if (isset($__messageOriginal)) { $message = $__messageOriginal; }
 endif;
 unset($__errorArgs, $__bag); ?>
-                        </div>
                     </div>
+                    </div>
+                    
+                    
                     <div class="col-md-4">
                         <div class="form-group">
                             <label for="tipoprioridade_id">Tipo de Prioridad:</label>
@@ -543,4 +537,5 @@ unset($__errorArgs, $__bag); ?>
 </script>
 
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.admin', \Illuminate\Support\Arr::except(get_defined_vars(), ['__data', '__path']))->render(); ?><?php /**PATH C:\laragon\www\paa2022v1\resources\views/admin/planadquisiciones/create.blade.php ENDPATH**/ ?>
