@@ -1,0 +1,165 @@
+[33mcommit b3a9b959746abbd5e19a8b1a251fe356402f53a7[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;31morigin/master[m[33m)[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Thu Feb 1 12:02:38 2024 -0500
+
+    Revert "Revert "Revert "Adquisicion"""
+    
+    This reverts commit 49e0a38555f9fc1dea71ece285add763ac85a108.
+
+[33mcommit 49e0a38555f9fc1dea71ece285add763ac85a108[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Thu Feb 1 12:02:21 2024 -0500
+
+    Revert "Revert "Adquisicion""
+    
+    This reverts commit 065620350c2a734f6e959a8021616471af76499e.
+
+[33mcommit 065620350c2a734f6e959a8021616471af76499e[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Thu Feb 1 12:01:36 2024 -0500
+
+    Revert "Adquisicion"
+    
+    This reverts commit 93e8aa5892285506841270c3f63a7c7efb2f94e5.
+
+[33mcommit 93e8aa5892285506841270c3f63a7c7efb2f94e5[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Thu Feb 1 11:43:39 2024 -0500
+
+    Adquisicion
+
+[33mcommit 5074d31b92fc37934766cdcf1caf896fc94ec3ce[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Thu Feb 1 11:14:23 2024 -0500
+
+    Habilitacion de Agregacion de plan
+
+[33mcommit e03739d7fadeaaf31074c097840485be5dc88a03[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Thu Feb 1 10:31:48 2024 -0500
+
+    listas dependentes
+
+[33mcommit fffb31419af0d46829c8e8c311f42aecc7323fc2[m
+Merge: e733a20 b2d9060
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Thu Feb 1 10:25:53 2024 -0500
+
+    Merge branch 'master' of https://github.com/juanparen15/paa2023V1
+
+[33mcommit e733a207eb8c52cafbad47844440d58266380076[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Thu Feb 1 10:22:33 2024 -0500
+
+    Habilitacion de agregacion de producto
+
+[33mcommit b2d90603636daddfd5ea3e4ff42e85988f0a5d7c[m
+Merge: 87885f7 1402a7c
+Author: juanparen15 <66437453+juanparen15@users.noreply.github.com>
+Date:   Wed Jan 31 17:23:07 2024 -0500
+
+    Merge pull request #1 from juanparen15/V1.0
+    
+    V1.0
+
+[33mcommit 87885f75a44fe78b3eb220100f22d06bce9b9685[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Wed Jan 31 17:21:46 2024 -0500
+
+    Visualizacion
+
+[33mcommit 1402a7c2cab93126efb35cc895b95ca5e19ce746[m[33m ([m[1;31morigin/V1.0[m[33m, [m[1;32mV1.0[m[33m)[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Mon Jan 29 13:58:13 2024 -0500
+
+    Ajax dependiente
+
+[33mcommit 2801a5ae2ef109c9ba634094e0e8248fc7f1e2d2[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Mon Jan 29 13:35:19 2024 -0500
+
+    Ajax seleccion dependiente
+
+[33mcommit 12d1aeccb9633aa4389a01df5505d0a5f41e61f4[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Fri Jan 5 17:08:07 2024 -0500
+
+    corte imagen
+
+[33mcommit 1c3f0c2abda70056f8a6795f9ccf3f04febd856c[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Thu Jan 4 09:05:50 2024 -0500
+
+    Cambio de fondo
+
+[33mcommit 097e8cf10b184992ff686069f710bd2c973611d1[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Tue Jan 2 10:24:42 2024 -0500
+
+    Cambio de logos Alcalde 2024
+
+[33mcommit 3b3afe06c3617b082d25cd1dff3d5b217c1d5d31[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Wed Dec 20 13:37:44 2023 -0500
+
+    Año automatico
+
+[33mcommit e6437b7031f2066a0a827d6f23672dbe3013c1d0[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Wed Dec 20 13:25:09 2023 -0500
+
+    Se quitó el boton eliminar
+
+[33mcommit c22a0d84a76629044b841b57f561dd005f895d8a[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Mon Dec 11 18:53:30 2023 -0500
+
+    url .env
+
+[33mcommit 4c77b2b8a8254b8afdc68d0b72b713c36ae6c252[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Mon Dec 11 18:50:21 2023 -0500
+
+    borrado de log
+
+[33mcommit 28536276dfe79d13bf71e5170bd0cd3981135df2[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Mon Dec 11 18:48:49 2023 -0500
+
+    base de datos
+
+[33mcommit 665d65be601475a23c49ae9dc28ba10f862f5674[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Thu Oct 19 15:03:53 2023 -0500
+
+    se quitó la funcion de registros
+
+[33mcommit 5ed2ef180f6bae18eeefb206f3e07eb223d0808c[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Tue Oct 17 18:26:38 2023 -0500
+
+    agregacion de producto
+
+[33mcommit 4882a62f55713bdf0a1636a45304a6e516380f00[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Sun Oct 15 18:06:18 2023 -0500
+
+    2023
+
+[33mcommit cc42e416ee88077bc8c8f4bfc4a36532f14aabff[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Sun Oct 15 18:03:29 2023 -0500
+
+    Agregando archivos
+
+[33mcommit d5afd1d99dfc14dd47151c8e104b88c9a744f168[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Sun Oct 15 18:02:02 2023 -0500
+
+    Agregando archivo .env
+
+[33mcommit 34d85e742bf6dfc90818f1e5784d867416ef137c[m[33m ([m[1;31mmaster/master[m[33m)[m
+Author: juanparen15 <jprendon9@gmail.com>
+Date:   Sun Oct 15 17:57:00 2023 -0500
+
+    first commit
