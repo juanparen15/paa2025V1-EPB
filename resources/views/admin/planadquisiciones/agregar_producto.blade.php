@@ -32,10 +32,11 @@
             <div class="card">
                 <div class="col-12 mb-2">
                     {{-- <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel</a> --}}
-                    <a value="Consultar Productos" class="btn btn-primary float-left" href="https://www.colombiacompra.gov.co/clasificador-de-bienes-y-servicios">CONSULTAR PRODUCTOS</a>
-            
+                    <a value="Consultar Productos" class="btn btn-primary float-left"
+                        href="https://www.colombiacompra.gov.co/clasificador-de-bienes-y-servicios">CONSULTAR PRODUCTOS</a>
+
                 </div>
-                
+
 
                 <div class="card-body">
 
@@ -45,7 +46,7 @@
                             <option value="" disabled selected> -- Seleccione un Segmento --</option>
                             @foreach ($segmentos as $segmento)
                                 <option value="{{ $segmento->id }}">{{ $segmento->id }}
-                                    -{{ $segmento->detsegmento }}</option>
+                                    - {{ $segmento->detsegmento }}</option>
                             @endforeach
                         </select>
                     </div>
@@ -116,10 +117,7 @@
                         );
                         $.each(data, function(key, value) {
                             $('#familia_id').append('<option value="' +
-                                value.id +
-                                '" name="' + value.detfamilia +
-                                '">' + value
-                                .detfamilia + '</option>');
+                                value.id + '" name="' + value.detfamilia +'">'+ value.id + ' - ' + value.detfamilia + '</option>');
                         });
                         // Selecciona automáticamente la primera opción
                         $('#familia_id').val($('#familia_id option:first')
@@ -145,10 +143,7 @@
                         );
                         $.each(data, function(key, value) {
                             $('#clase_id').append('<option value="' +
-                                value.id +
-                                '" name="' + value.detclase + '">' +
-                                value
-                                .detclase + '</option>');
+                                value.id + '" name="' + value.detclase + '">'+ value.id + ' - ' + value.detclase + '</option>');
                         });
                         // Selecciona automáticamente la primera opción
                         $('#clase_id').val($('#clase_id option:first').val());
@@ -173,10 +168,7 @@
                         );
                         $.each(data, function(key, value) {
                             $('#producto_id').append('<option value="' +
-                                value.id +
-                                '" name="' + value.detproducto +
-                                '">' + value
-                                .detproducto + '</option>');
+                                value.id + '" name="' + value.detproducto + '">'+ value.id + ' - ' + value.detproducto + '</option>');
                         });
                         // Selecciona automáticamente la primera opción
                         $('#producto_id').val($('#producto_id option:first')
