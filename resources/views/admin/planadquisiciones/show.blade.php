@@ -39,6 +39,13 @@
                     <div class="row">
                         <div class="col-sm-4 invoice-col">
                             <address>
+                                <strong>SIIPAA2023</strong><br>
+                                {{ $planadquisicione->id }}
+                            </address>
+                        </div>
+
+                        <div class="col-sm-4 invoice-col">
+                            <address>
                                 <strong>Descripción del Objeto Contractual</strong><br>
                                 {{ $planadquisicione->descripcioncont }}
                             </address>
