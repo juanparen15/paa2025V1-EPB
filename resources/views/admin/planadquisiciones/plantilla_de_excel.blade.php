@@ -30,8 +30,8 @@
             <td>{{$plan->duracont}}</td>
             <td>{{$plan->modalidade->detmodalidad}}</td>
             <td>{{$plan->fuente->detfuente}}</td>
-            <td>{{$plan->valorestimadocont}}</td>
-            <td>{{$plan->valorestimadovig}}</td>
+            <td>{{$plan->valorestimadocont}} COP</td>
+            <td>{{$plan->valorestimadovig}} COP</td>
             <td>{{$plan->requiproyecto->detproyeto}}</td>
             <td>{{$plan->area->nomarea}}</td>
             <td>{{$plan->codbpim}}</td>

@@ -31,8 +31,8 @@
             <td>{{$planadquisicion->duracont}}</td>
             <td>{{$planadquisicion->modalidade->detmodalidad}}</td>
             <td>{{$planadquisicion->fuente->detfuente}}</td>
-            <td>{{$planadquisicion->valorestimadocont}}</td>
-            <td>{{$planadquisicion->valorestimadovig}}</td>
+            <td>{{$planadquisicion->valorestimadocont}} COP</td>
+            <td>{{$planadquisicion->valorestimadovig}} COP</td>
             <td>{{$planadquisicion->requiproyecto->detproyeto}}</td>
             <td>{{$planadquisicion->estadovigencia->detestadovigencia}}</td>
             <td>{{$planadquisicion->area->nomarea}}</td>

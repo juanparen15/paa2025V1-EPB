@@ -79,7 +79,6 @@
                         <tbody>
 
 
-
                             @foreach ($planadquisiciones as $planadquisicion)
                             <tr>
                                 <td>{{$planadquisicion->id}}</td>   
@@ -87,9 +86,9 @@
                                 <td>{{$planadquisicion->duracont}}</td>
                                 <td>{{$planadquisicion->modalidade->detmodalidad}}</td>
                                 <td>{{$planadquisicion->fuentes}}</td>
-                                <td>{{$planadquisicion->valorestimadocont}}</td>
+                                <td>{{$planadquisicion->valorestimadocont}} COP</td>
                                 <td>{{$planadquisicion->descripcioncont}}</td>
-                                <td>{{$planadquisicion->valorestimadovig}}</td>
+                                <td>{{$planadquisicion->valorestimadovig}} COP</td>
                                 <td>{{$planadquisicion->requiproyecto->detproyeto}}</td>
                                 <td>{{$planadquisicion->area->nomarea}}</td>
                                 <td>{{$planadquisicion->codbpim}}</td>
