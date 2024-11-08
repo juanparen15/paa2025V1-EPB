@@ -5,8 +5,8 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class Planadquisicione extends Model
-{   
-    protected $fillable= [
+{
+    protected $fillable = [
         'descripcioncont',
         'valorestimadocont',
         'valorestimadovig',
@@ -25,86 +25,103 @@ class Planadquisicione extends Model
         'mese_id',
         'requipoai_id',
         'user_id',
-        'slug',       
+        'slug',
     ];
 
-    public function getRouteKeyName() {
-      return "slug";
+    public function getRouteKeyName()
+    {
+        return "slug";
     }
 
     //Relacion Uno a Muchos (Inversa)
-    public function user(){
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
     //Relacion Uno a Muchos (Inversa)
-    public function estadovigencia(){
+    public function estadovigencia()
+    {
         return $this->belongsTo(Estadovigencia::class);
     }
 
     //Relacion Uno a Muchos (Inversa)
-    public function fuente(){
+    public function fuente()
+    {
         return $this->belongsTo(Fuente::class);
     }
 
     //Relacion Uno a Muchos (Inversa)
-    public function tipoproceso(){
+    public function tipoproceso()
+    {
         return $this->belongsTo(Tipoproceso::class);
     }
 
     //Relacion Uno a Muchos (Inversa)
-    public function tipoadquisicione(){
+    public function tipoadquisicione()
+    {
         return $this->belongsTo(Tipoadquisicione::class);
     }
 
     //Relacion Uno a Muchos (Inversa)
-    public function requiproyecto(){
+    public function requiproyecto()
+    {
         return $this->belongsTo(Requiproyecto::class);
     }
 
     //Relacion Uno a Muchos (Inversa)
-    public function mese(){
+    public function mese()
+    {
         return $this->belongsTo(Mese::class);
     }
 
     //Relacion Uno a Muchos (Inversa)
-    public function tipoprioridade(){
+    public function tipoprioridade()
+    {
         return $this->belongsTo(Tipoprioridade::class);
     }
 
     //Relacion Uno a Muchos (Inversa)
-    public function requipoai(){
+    public function requipoai()
+    {
         return $this->belongsTo(Requipoai::class);
     }
 
     //Relacion Uno a Muchos (Inversa)
-    public function modalidade(){
+    public function modalidade()
+    {
         return $this->belongsTo(Modalidade::class);
     }
 
-   //Relacion Uno a Muchos (Inversa)
-   public function tipozona(){
-       return $this->belongsTo(Tipozona::class);
-    } 
-    
     //Relacion Uno a Muchos (Inversa)
-   public function vigenfutura(){
-       return $this->belongsTo(Vigenfutura::class);
+    public function tipozona()
+    {
+        return $this->belongsTo(Tipozona::class);
     }
 
     //Relacion Uno a Muchos (Inversa)
-   public function area(){
-      return $this->belongsTo(Area::class);
+    public function vigenfutura()
+    {
+        return $this->belongsTo(Vigenfutura::class);
     }
-    
-     //Relacion Muchos a Muchos
 
-     public function productos(){
+    //Relacion Uno a Muchos (Inversa)
+    public function area()
+    {
+        return $this->belongsTo(Area::class);
+    }
+
+    //Relacion Muchos a Muchos
+
+    public function productos()
+    {
         return $this->belongsToMany(Producto::class);
     }
     //Relacion Muchos a Muchos
 
-    public function detalleplanadquisiciones(){
+    public function detalleplanadquisiciones()
+    {
         return $this->hasMany(Detalleplanadquisicione::class);
     }
+
 }

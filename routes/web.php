@@ -2,6 +2,9 @@
 
 use App\Empresa;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ChartController;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\CustomForgotPasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -107,3 +110,9 @@ Route::post('productos_import', 'ImportExcelController@productos_import')->name(
 //new
 Route::get('planadquisiciones-export', 'PlanadquisicioneController@export')->name('planadquisiciones.export');
 Route::put('update-profile/{user}', 'UserController@updateProfile')->name('update.profile');
+
+// Ruta para mostrar el formulario de solicitud de enlace de restablecimiento de contraseña
+Route::get('password/reset', [CustomForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+
+// Ruta para enviar el enlace de restablecimiento de contraseña
+Route::post('password/email', [CustomForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
