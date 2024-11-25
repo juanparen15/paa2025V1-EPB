@@ -61,7 +61,6 @@
                     {{ is_numeric($planadquisicion->valorestimadocont) ? number_format($planadquisicion->valorestimadocont, 0, '', '') . ' COP' : 'N/A' }}
                 </td>
 
-
                 <!-- Valor estimado en la vigencia actual -->
                 <td>
                     {{ is_numeric($planadquisicion->valorestimadovig) ? number_format($planadquisicion->valorestimadovig, 0, '', '') . ' COP' : 'N/A' }}

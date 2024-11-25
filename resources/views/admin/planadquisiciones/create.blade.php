@@ -67,16 +67,33 @@
                             </div>
                         </div>
 
+                        <div class="col-md-4">
+                            <div class="form-group">
+                                <label for="intervalo_id">Duración del contrato (intervalo: días, meses, años):</label>
+                                <select class="select2 @error('intervalo_id') is-invalid @enderror" name="intervalo_id"
+                                    id="intervalo_id" style="width: 100%;">
+                                    <option value="" disabled selected>Seleccione día, mes, año</option>
+                                    @foreach ($intervalos as $intervalo)
+                                        <option value="{{ $intervalo->id }}"
+                                            {{ old('intervalo_id') == $intervalo->id ? 'selected' : '' }}>
+                                            {{ $intervalo->intervalo }}</option>
+                                    @endforeach
+                                </select>
+                                @error('intervalo_id')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         {{--  Valores numéricos fin  --}}
                         <div class="col-md-4">
                             <div class="form-group">
-                                <label for="duracont">Duración Estimada del Contrato(Número de Mes(es)):</label>
-                                <input placeholder="Escriba la Duración Estimada del Contrato(Número de Mes(es))"
-                                    type="text" name="duracont" id="duracont" class="form-control" required>
+                                <label for="duracont">Cantidad de días, meses, años:</label>
+                                <input placeholder="Cantidad de días, meses, años" type="text" name="duracont" id="duracont" class="form-control" required>
                             </div>
                         </div>
-
 
                         <div class="col-md-4">
                             <div class="form-group">
@@ -194,7 +211,7 @@
                         </div>
 
 
-                        <div class="col-md-8">
+                        <div class="col-md-4">
                             <div class="form-group">
                                 <label for="tipoproceso_id">Tipo de Proceso Contractual:</label>
                                 <select class="select2 @error('tipoproceso_id') is-invalid @enderror"

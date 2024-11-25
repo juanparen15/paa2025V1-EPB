@@ -358,7 +358,7 @@
 
             series: [{
                 type: 'pie',
-                name: 'Series',
+                name: 'Porcentaje',
                 colorByPoint: true,
                 data: [<?php foreach ($adquisicionesSeries as $adq) { ?> {
                         name: '<?php echo $adq->serie_name; ?>',

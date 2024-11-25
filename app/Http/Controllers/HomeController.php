@@ -182,18 +182,41 @@ class HomeController extends Controller
 
             $adquisiciones3 = Planadquisicione::where('user_id', auth()->user()->id)->select(
                 DB::raw("count(*) as count"),
-                DB::raw("count(valorestimadocont) as adq"),
-                DB::raw("DATE_FORMAT(created_at,'%Y') as anyo")
+                DB::raw("sum(CAST(REPLACE(valorestimadocont, '.', '') AS DECIMAL(15,2))) as adq"),
+                DB::raw("MONTH(created_at) as mes"),
+                DB::raw("YEAR(created_at) as anyo")
             )
-                ->orderBy('anyo', 'DESC')
-                ->join('areas', 'planadquisiciones.area_id', '=', 'areas.id')
-                ->groupBy('anyo')->take(12)->get();
+                ->groupBy('anyo', 'mes')
+                // ->orderBy('anyo', 'desc')
+                // ->orderBy('mes', 'desc')
+                ->take(12)
+                ->get();
+
+
+            // Traducción de meses en español
+            $mesesEspanol = [
+                1 => 'enero',
+                2 => 'febrero',
+                3 => 'marzo',
+                4 => 'abril',
+                5 => 'mayo',
+                6 => 'junio',
+                7 => 'julio',
+                8 => 'agosto',
+                9 => 'septiembre',
+                10 => 'octubre',
+                11 => 'noviembre',
+                12 => 'diciembre'
+            ];
+
+
 
             // Accede a los datos de la relación
             foreach ($adquisiciones3 as $adq) {
                 // $area = $adq->area; // "area" es el nombre del método de relación en el modelo Planadquisicione
                 // $nombreArea = $area->nomarea; // Accede a los campos de la relación (ejemplo: "nomarea")
-                $created_at = $adq->created_at;
+                // $created_at = $adq->created_at;
+                $adq->mes_traducido = $mesesEspanol[$adq->mes];
                 // Puedes usar $nombreArea en tu lógica aquí
             }
 
@@ -208,14 +231,15 @@ class HomeController extends Controller
             // tipoadquisicione_id 
 
             $adquisicionesSeries = Planadquisicione::where('user_id', auth()->user()->id)->select(
-                'tipoadquisicione_id ',
+                // $adquisicionesSeries = Planadquisicione::select(
+                'tipoadquisicione_id',
                 DB::raw('count(*) as adq'),
                 // DB::raw('MAX(areas.nomarea) as area_name'),
                 DB::raw('MAX(tipoadquisiciones.dettipoadquisicion) as serie_name'),
-                // ->groupby(DB::raw("carpeta"))
+                // ->groupby(DB::raw("valorestimadocont"))
                 // ->pluck('count')
                 // DB::raw("DATE_FORMAT(fechaInicial,'%M %Y') as anyo"),
-                DB::raw("count(valorestimadocont) as adq")
+                DB::raw("SUM(valorestimadocont) as adq")
             )
                 ->join('tipoadquisiciones', 'planadquisiciones.tipoadquisicione_id', '=', 'tipoadquisiciones.id') // Realiza una join con la tabla de áreas
                 // DB::raw("count(area_id) as area_adq"))
@@ -240,12 +264,13 @@ class HomeController extends Controller
                 'areas.dependencia_id', // Seleccionamos dependencia_id a través de áreas
                 DB::raw('count(*) as adq'), // Contamos las adquisiciones
                 DB::raw('MAX(dependencias.nomdependencia) as dependencia_name'), // Nombre de la dependencia
-                DB::raw("SUM(planadquisiciones.valorestimadocont) as adq") // Contamos la cantidad de 'valorestimadocont'
+                DB::raw("sum(CAST(REPLACE(planadquisiciones.valorestimadocont, '.', '') AS DECIMAL(15,2))) as adq") // Sumamos 'valorestimadocont' con conversión
             )
                 ->join('areas', 'planadquisiciones.area_id', '=', 'areas.id') // Unimos con la tabla 'areas' usando 'area_id'
                 ->join('dependencias', 'areas.dependencia_id', '=', 'dependencias.id') // Unimos 'areas' con 'dependencias' usando 'dependencia_id'
                 ->groupBy('areas.dependencia_id') // Agrupamos por 'dependencia_id'
                 ->get();
+
 
             // Acceder a los datos
             foreach ($adquisicionesDependencia as $adq) {

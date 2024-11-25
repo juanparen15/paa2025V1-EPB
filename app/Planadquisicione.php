@@ -25,6 +25,7 @@ class Planadquisicione extends Model
         'mese_id',
         'requipoai_id',
         'user_id',
+        'intervalo_id',
         'slug',
     ];
 
@@ -124,4 +125,8 @@ class Planadquisicione extends Model
         return $this->hasMany(Detalleplanadquisicione::class);
     }
 
+    public function intervalo()
+    {
+        return $this->belongsTo(Intervalo::class);
+    }
 }

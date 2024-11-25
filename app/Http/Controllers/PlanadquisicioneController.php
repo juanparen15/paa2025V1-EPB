@@ -12,6 +12,7 @@ use App\Modalidade;
 use App\Estadovigencia;
 use App\Exports\PlanadquisicioneAllExport;
 use App\Exports\PlanadquisicioneExport;
+use App\Intervalo;
 use App\Producto;
 use App\Segmento;
 use App\Tipoadquisicione;
@@ -60,7 +61,8 @@ class PlanadquisicioneController extends Controller
         $tipoprocesos = Tipoproceso::get();
         $tipozonas = Tipozona::get();
         $vigenfuturas = Vigenfutura::get();
-        return view ('admin.planadquisiciones.create',compact('areas','estadovigencias','fuentes','meses','modalidades','requipoais','requiproyectos','tipoadquisiciones','tipoprioridades','tipoprocesos','tipozonas','vigenfuturas','productos'));
+        $intervalos = Intervalo::get();
+        return view ('admin.planadquisiciones.create',compact('intervalos', 'areas','estadovigencias','fuentes','meses','modalidades','requipoais','requiproyectos','tipoadquisiciones','tipoprioridades','tipoprocesos','tipozonas','vigenfuturas','productos'));
     }
     
     public function store(Request $request)
@@ -84,6 +86,8 @@ class PlanadquisicioneController extends Controller
             'tipoprioridade_id'=> ['required'],
             'mese_id'=> ['required'],
             'requipoai_id'=> ['required'],
+            'intervalo_id' => ['required', 'exists:intervalos,id'],
+
         ]);
 
         $planadquisicione = Planadquisicione::create($request->all()+[
@@ -121,6 +125,7 @@ class PlanadquisicioneController extends Controller
         $tipoprocesos = Tipoproceso::get();
         $tipozonas = Tipozona::get();
         $vigenfuturas = Vigenfutura::get();
+        $intervalos = Intervalo::get();
         return view ('admin.planadquisiciones.edit',compact(
             'productos',
             'areas',
@@ -134,7 +139,8 @@ class PlanadquisicioneController extends Controller
             'tipoprioridades',
             'tipoprocesos',
             'tipozonas',
-            'vigenfuturas','planadquisicione'
+            'vigenfuturas','planadquisicione',
+            'intervalos'
         ));
     }
     
@@ -159,6 +165,7 @@ class PlanadquisicioneController extends Controller
             'tipoprioridade_id'=> ['required'],
             'mese_id'=> ['required'],
             'requipoai_id'=> ['required'],
+            'intervalo_id' => ['required', 'exists:intervalos,id'],
         ]);
 
         $planadquisicione->update($request->all()+[

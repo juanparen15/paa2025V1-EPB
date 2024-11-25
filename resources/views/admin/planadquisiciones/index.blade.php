@@ -58,7 +58,7 @@
                                     <th>SIIPAA<?= date('Y') ?></th>
                                     <th>Fecha Estimada de Inicio del Proceso(Mes)</th>
                                     <th>Duración Estimada del Contrato(Número de Mes(es))</th>
-                                    <th>Modalidad de Selección </th>
+                                    {{-- <th>Modalidad de Selección </th> --}}
                                     <th>Fuente de los Recursos</th>
                                     <th>Valor Total Estimado $</th>
                                     <th>Descripción del Objeto Contractual</th>
@@ -84,7 +84,7 @@
                                         <td>{{ $planadquisicion->id }}</td>
                                         <td>{{ $planadquisicion->mese->nommes }}</td>
                                         <td>{{ $planadquisicion->duracont }}</td>
-                                        <td>{{ $planadquisicion->modalidade->detmodalidad }}</td>
+                                        {{-- <td>{{ $planadquisicion->modalidade->detmodalidad }}</td> --}}
                                         <td>{{ $planadquisicion->fuentes }}</td>
                                         <td>{{ $planadquisicion->valorestimadocont }} COP</td>
                                         <td>{{ $planadquisicion->descripcioncont }}</td>
@@ -126,14 +126,14 @@
                                                 @endcan
 
 
-                                                {{-- @can('planadquisiciones.edit')
-                                        <a class="btn btn-primary btn-sm"
-                                            href="{{route('planadquisiciones.edit', $planadquisicion)}}">Editar</a>
-                                        @endcan --}}
-                                                {{-- 
-                                        @can('planadquisiciones.destroy')
-                                        <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                        @endcan --}}
+                                                @can('planadquisiciones.edit')
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="{{ route('planadquisiciones.edit', $planadquisicion) }}">Editar</a>
+                                                @endcan
+
+                                                @can('planadquisiciones.destroy')
+                                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                                @endcan
                                             </form>
                                         </td>
                                     </tr>
@@ -164,7 +164,7 @@
                 });
                 Toast.fire({
                     icon: 'success',
-                    title: 'La Modalidad se Creo con Exito.'
+                    title: 'El Plan de Adquisiciones se Creó con Exito.'
                 })
             });
         </script>
@@ -180,7 +180,7 @@
                 });
                 Toast.fire({
                     icon: 'success',
-                    title: 'El Plan adquisiciones se Actualizo con Exito.'
+                    title: 'El Plan de Adquisiciones se Actualizó con Exito.'
                 })
             });
         </script>

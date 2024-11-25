@@ -66,10 +66,16 @@
                         </div>
                         <!-- /.col -->
 
+                        <div class="col-sm-4 invoice-col">
+                            <address>
+                                <strong>Duración del contrato (intervalo: días, meses, años)</strong><br>
+                                {{ $planadquisicione->intervalo->intervalo }}
+                            </address>
+                        </div>
 
                         <div class="col-sm-4 invoice-col">
                             <address>
-                                <strong>Duración Estimada del Contrato(Número de Mes(es))</strong><br>
+                                <strong>Cantidad de días, meses, años</strong><br>
                                 {{ $planadquisicione->duracont }}
                             </address>
                         </div>
