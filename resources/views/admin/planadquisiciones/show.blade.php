@@ -192,12 +192,12 @@
                                     <tr>
                                         <td scope="row">{{ $producto->id }}</td>
                                         <td>{{ $producto->detproducto }}</td>
-                                        @can('retirar_producto')
+                                        {{-- @can('retirar_producto') --}}
                                             <td>
                                                 <a href="{{ route('retirar_producto', [$planadquisicione, $producto]) }}"
                                                     class="btn btn-danger btn-sm">Eliminar</a>
                                             </td>
-                                        @endcan
+                                        {{-- @endcan --}}
                                     </tr>
                                 @endforeach
 
