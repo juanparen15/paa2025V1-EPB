@@ -191,11 +191,31 @@ class PlanadquisicioneController extends Controller
             'intervalo_id' => ['required'],
         ]);
 
+        // $planadquisicione->update($request->all() + [
+        //     'user_id' => auth()->user()->id,
+        //     'slug' => Str::slug($request->descripcioncont, '-'),
+        // ]);
+
+        // Crear el nuevo slug sin el -id
+        $newSlugBase = Str::slug($request->descripcioncont);
+
+        // Mantener el -id en el slug actual
+        $existingId = last(explode('-', $planadquisicione->slug));
+        $newSlug = $newSlugBase . '-' . $existingId;
+
+        // Verificar si ya existe otro registro con el mismo slug pero diferente ID
+        $counter = 1;
+        while (Planadquisicione::where('slug', $newSlug)->where('id', '!=', $planadquisicione->id)->exists()) {
+            $newSlug = $newSlugBase . '-' . $counter;
+            $counter++;
+        }
+
+        // Actualizar el registro con el nuevo slug
         $planadquisicione->update($request->all() + [
             'user_id' => auth()->user()->id,
-            'slug' => Str::slug($request->descripcioncont, '-'),
+            'slug' => $newSlug,
         ]);
-
+        
         // foreach ($request->producto_id as $key =>$product){
         //     $results[] = array("producto_id" => $request->producto_id[$key]);
         // }
