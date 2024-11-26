@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ChartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\CustomForgotPasswordController;
+use App\Http\Controllers\PlanadquisicioneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -93,6 +94,8 @@ Route::get('/get-familias/{segmento_id}', 'AjaxController@obtener_familias')->na
 Route::get('/get-clases/{familia_id}', 'AjaxController@obtener_clases')->name('obtener_clases');
 Route::get('/get-productos/{clase_id}', 'AjaxController@obtener_productos')->name('obtener_productos');
 route::get('planadquisiciones/{planadquisicion}/agregar_producto', 'PlanadquisicioneController@agregar_producto')->name('agregar_producto');
+Route::get('/planadquisiciones/{planadquisicione}/agregar_producto', [PlanadquisicioneController::class, 'agregar_producto'])->name('planadquisiciones.agregar_producto');
+
 route::post('planadquisiciones/{planadquisicion}/agregar_producto_store', 'PlanadquisicioneController@agregar_producto_store')->name('agregar_producto_store');
 Route::resource('users', 'UserController')->names('users');
 // ================== rutas para importar datos 

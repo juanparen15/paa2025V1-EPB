@@ -33,6 +33,7 @@
                 'route' => ['planadquisiciones.update', $planadquisicione],
                 'method' => 'PUT',
             ]) !!}
+            @csrf
             <div class="card card-primary">
                 {{--  <div class="card-header">
               <h3 class="card-title">General</h3>
@@ -89,7 +90,7 @@
                         <div class="col-md-4">
                             <div class="form-group">
                                 <label for="duracont">Cantidad de días, meses, años:</label>
-                                <input placeholder="Cantidad de días, meses, años" type="text" name="duracont"
+                                <input placeholder="Cantidad de días, meses, años" type="number" name="duracont"
                                     value="{{ old('duracont', $planadquisicione->duracont) }}" class="form-control"
                                     required>
                             </div>

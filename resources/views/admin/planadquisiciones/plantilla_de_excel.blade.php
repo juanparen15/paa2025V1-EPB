@@ -1,54 +1,92 @@
-<table >
+<table>
     <thead>
         <tr>
-            <th>SIIPAA<?= date('Y') ?></th>
-            <th>Descripción del Objeto contractual</th>
-            <th>Fecha estimada de inicio del proceso(mes)</th>
-            <th>Duración estimada del contrato(número de mes(es))</th>
-            <th>Modalidad de selección </th>
+            <th>Código UNSPSC (cada código separado por ;)</th>
+            <th>Descripción</th>
+            <th>Fecha estimada de inicio de proceso de selección (mes)</th>
+            <th>Fecha estimada de presentación de ofertas (mes)</th>
+            <th>Duración del contrato (número)</th>
+            <th>Duración del contrato (intervalo: días, meses, años)</th>
+            <th>Modalidad de selección</th>
             <th>Fuente de los recursos</th>
             <th>Valor total estimado</th>
-            <th>Valor estimado en vigencia actual</th>
+            <th>Valor estimado en la vigencia actual</th>
             <th>¿Se requieren vigencias futuras?</th>
-            <th>Área</th>
-            <th>Código Banco De Programas Y Proyectos De Inversión Nacional--BPIN</th>
-            <th>¿Se requiere POAI?</th>
-            <th>Tipo de zona de ejecucion del Contrato</th>
-            <th>Tipo de Adquisición o contrato</th>
-            <th>Tipo de Proceso contractual</th>
-            <th>Tipo de Prioridad</th>
-            <th>Estado solicitud vigencias futuras</th>
-            <th>CODIGO UNSPSC</th>
+            <th>Estado de solicitud de vigencias futuras</th>
+            <th>Unidad de contratación (referencia)</th>
+            <th>Ubicación</th>
+            <th>Nombre del responsable</th>
+            <th>Teléfono del responsable</th>
+            <th>Correo electrónico del responsable</th>
+            <th>¿Debe cumplir con invertir mínimo el 30% de los recursos del presupuesto destinados a comprar alimentos,
+                cumpliendo con lo establecido en la Ley 2046 de 2020, reglamentada por el Decreto 248 de 2021?</th>
+            <th>¿El contrato incluye el suministro de bienes y servicios distintos a alimentos?</th>
         </tr>
     </thead>
     <tbody>
-     
-        <tr>
-            <td>{{$plan->id}}</td>
-            <td>{{$plan->descripcioncont}}</td>
-            <td>{{$plan->mese->nommes}}</td>
-            <td>{{$plan->duracont}}</td>
-            <td>{{$plan->modalidade->detmodalidad}}</td>
-            <td>{{$plan->fuente->detfuente}}</td>
-            <td>{{$plan->valorestimadocont}} COP</td>
-            <td>{{$plan->valorestimadovig}} COP</td>
-            <td>{{$plan->requiproyecto->detproyeto}}</td>
-            <td>{{$plan->area->nomarea}}</td>
-            <td>{{$plan->codbpim}}</td>
-            <td>{{$plan->requipoai->detpoai}}</td>
-            <td>{{$plan->tipozona->tipozona}}</td>
-            <td>{{$plan->tipoadquisicione->dettipoadquisicion}}</td>
-            <td>{{$plan->tipoproceso->dettipoproceso}}</td>
-            <td>{{$plan->tipoprioridade->detprioridad}}</td>
-            <td>{{$plan->estadovigencia->detestadovigencia}}</td>
-            <td>
-               
-                @foreach ($plan->productos as $producto)
-                {{$producto->id}},
-                @endforeach
 
+        <tr>
+            <!-- Código UNSPSC -->
+            <td>
+                @foreach ($plan->productos as $index => $item)
+                    {{ $item->id }}{{ $loop->last ? '' : ';' }}
+                @endforeach
             </td>
+
+            <!-- Descripción -->
+            <td>{{ $plan->descripcioncont }}</td>
+
+            <!-- Fecha estimada de inicio de proceso de selección (mes) -->
+            <td>{{ $plan->mese->id }}</td>
+
+            <!-- Fecha estimada de presentación de ofertas (mes) -->
+            <td>{{ $plan->mese->id ?? 'N/A' }}</td>
+
+            <!-- Duración del contrato (número) -->
+            <td>{{ $plan->duracont }}</td>
+
+            <!-- Duración del contrato (intervalo: días, meses, años) -->
+            <td>{{ $plan->intervalo->codigo ?? '1' }}</td>
+
+            <!-- Modalidad de selección -->
+            <td>{{ $plan->modalidade->codigo ?? 'N/A' }}</td>
+
+            <!-- Fuente de los recursos -->
+            <td>{{ $plan->fuente->codigo }}</td>
+
+            <!-- Valor total estimado -->
+            <td>{{ $plan->valorestimadocont }}</td>
+
+            <!-- Valor estimado en la vigencia actual -->
+            <td>{{ $plan->valorestimadovig }}</td>
+
+            <!-- ¿Se requieren vigencias futuras? -->
+            <td>{{ $plan->vigenfutura->codigo }}</td>
+
+            <!-- Estado de solicitud de vigencias futuras -->
+            <td>{{ $plan->estadovigencia->codigo }}</td>
+
+            <!-- Unidad de contratación (referencia) -->
+            <td>{{ $plan->unidadContratacion ?? '' }}</td>
+
+            <!-- Ubicación -->
+            <td>{{ $plan->ubicacion ?? 'CO-BOY-15572' }}</td>
+
+            <!-- Nombre del responsable -->
+            <td>{{ $plan->area->nomarea ?? 'N/A' }}</td>
+
+            <!-- Teléfono del responsable -->
+            <td>{{ $plan->responsable->telefono ?? '3103127401' }}</td>
+
+            <!-- Correo electrónico del responsable -->
+            <td>{{ $plan->user->email ?? 'N/A' }}</td>
+
+            <!-- ¿Debe cumplir con la ley? -->
+            <td>{{ $plan->cumpleLey2046 ?? '0' }}</td>
+
+            <!-- ¿El contrato incluye el suministro de bienes y servicios distintos a alimentos? -->
+            <td>{{ $plan->suministroBienes ?? '1' }}</td>
         </tr>
-   
+
     </tbody>
 </table>

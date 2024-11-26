@@ -55,10 +55,11 @@
                         <table id="example2" class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>SIIPAA<?= date('Y') ?></th>
+                                    <th>SIIPAA <?= date('Y') ?></th>
                                     <th>Fecha Estimada de Inicio del Proceso(Mes)</th>
-                                    <th>Duración Estimada del Contrato(Número de Mes(es))</th>
-                                    {{-- <th>Modalidad de Selección </th> --}}
+                                    <th>Duración del contrato (intervalo: días, meses, años)</th>
+                                    <th>Cantidad de días, meses, años</th>
+                                    <th>Modalidad de Selección </th>
                                     <th>Fuente de los Recursos</th>
                                     <th>Valor Total Estimado $</th>
                                     <th>Descripción del Objeto Contractual</th>
@@ -83,9 +84,10 @@
                                     <tr>
                                         <td>{{ $planadquisicion->id }}</td>
                                         <td>{{ $planadquisicion->mese->nommes }}</td>
+                                        <td>{{ $planadquisicion->intervalo->intervalo ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->duracont }}</td>
-                                        {{-- <td>{{ $planadquisicion->modalidade->detmodalidad }}</td> --}}
-                                        <td>{{ $planadquisicion->fuentes }}</td>
+                                        <td>{{ $planadquisicion->modalidade->detmodalidad ?? 'N/A' }}</td>
+                                        <td>{{ $planadquisicion->fuente->detfuente ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->valorestimadocont }} COP</td>
                                         <td>{{ $planadquisicion->descripcioncont }}</td>
                                         <td>{{ $planadquisicion->valorestimadovig }} COP</td>

@@ -58,7 +58,7 @@
                 <b>
                     <a href="https://www.colombiacompra.gov.co/plan-anual-de-adquisiciones/planes-anuales-de-adquisiciones"target="_blank">Plan de Adquisiciones</a>.</strong> Todos los Derechos Reservados por la Alcaldia Municipal de Puerto Boyacá.
                 <b><br>
-                <a>Analisis, Diseño y Desarrollo: Oficina de Sistemas Municipal y Contrato 273 de 2021</a></b>
+                <a>Analisis, Diseño y Desarrollo: Oficina de Sistemas Municipal y Contrato 385 de 2024</a></b>
         </footer>
     </div>
     {!! Html::script('adminlte/plugins/jquery/jquery.min.js') !!}

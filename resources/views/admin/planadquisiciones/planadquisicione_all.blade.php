@@ -47,58 +47,56 @@
                 <td>{{ $planadquisicion->duracont }}</td>
 
                 <!-- Duración del contrato (intervalo: días, meses, años) -->
-                <td>{{ $planadquisicion->intervaloDuracion ?? 'N/A' }}</td>
+                <td>{{ $planadquisicion->intervalo->codigo ?? '1' }}</td>
                 <!-- Ajustar según el nombre exacto de la columna -->
 
                 <!-- Modalidad de selección -->
-                <td>{{ $planadquisicion->modalidade->detmodalidad }}</td>
+                <td>{{ $planadquisicion->modalidade->codigo ?? 'N/A' }}</td>
 
                 <!-- Fuente de los recursos -->
-                <td>{{ $planadquisicion->fuente->detfuente }}</td>
+                <td>{{ $planadquisicion->fuente->codigo }}</td>
 
                 <!-- Valor total estimado -->
                 <td>
-                    {{ is_numeric($planadquisicion->valorestimadocont) ? number_format($planadquisicion->valorestimadocont, 0, '', '') . ' COP' : 'N/A' }}
+                    {{ $planadquisicion->valorestimadocont }}
                 </td>
-
                 <!-- Valor estimado en la vigencia actual -->
                 <td>
-                    {{ is_numeric($planadquisicion->valorestimadovig) ? number_format($planadquisicion->valorestimadovig, 0, '', '') . ' COP' : 'N/A' }}
+                    {{ $planadquisicion->valorestimadovig }}
                 </td>
 
-
                 <!-- ¿Se requieren vigencias futuras? -->
-                <td>{{ $planadquisicion->requiproyecto->detproyeto == 'Sí' ? '1' : '0' }}</td>
+                <td>{{ $planadquisicion->vigenfutura->codigo }}</td>
 
                 <!-- Estado de solicitud de vigencias futuras -->
-                <td>{{ $planadquisicion->estadovigencia->detestadovigencia }}</td>
+                <td>{{ $planadquisicion->estadovigencia->codigo }}</td>
 
                 <!-- Unidad de contratación (referencia) -->
-                <td>{{ $planadquisicion->unidadContratacion ?? 'N/A' }}</td>
+                <td>{{ $planadquisicion->unidadContratacion ?? '' }}</td>
                 <!-- Ajustar según el nombre exacto de la columna -->
 
                 <!-- Ubicación -->
-                <td>{{ $planadquisicion->ubicacion ?? 'N/A' }}</td>
+                <td>{{ $planadquisicion->ubicacion ?? 'CO-BOY-15572' }}</td>
                 <!-- Ajustar según el nombre exacto de la columna -->
 
                 <!-- Nombre del responsable -->
-                <td>{{ $planadquisicion->responsable->nombre ?? 'N/A' }}</td>
+                <td>{{ $planadquisicion->area->nomarea ?? 'N/A' }}</td>
                 <!-- Ajustar según el nombre exacto de la relación/columna -->
 
                 <!-- Teléfono del responsable -->
-                <td>{{ $planadquisicion->responsable->telefono ?? 'N/A' }}</td>
+                <td>{{ $planadquisicion->responsable->telefono ?? '3103127401' }}</td>
                 <!-- Ajustar según el nombre exacto de la relación/columna -->
 
                 <!-- Correo electrónico del responsable -->
-                <td>{{ $planadquisicion->responsable->correo ?? 'N/A' }}</td>
+                <td>{{ $planadquisicion->user->email ?? 'N/A' }}</td>
                 <!-- Ajustar según el nombre exacto de la relación/columna -->
 
                 <!-- ¿Debe cumplir con la ley? -->
-                <td>{{ $planadquisicion->cumpleLey2046 ?? 'No' }}</td>
+                <td>{{ $planadquisicion->cumpleLey2046 ?? '0' }}</td>
                 <!-- Ajustar según el nombre exacto de la columna -->
 
                 <!-- ¿El contrato incluye el suministro de bienes y servicios distintos a alimentos? -->
-                <td>{{ $planadquisicion->suministroBienes ?? 'No' }}</td>
+                <td>{{ $planadquisicion->suministroBienes ?? '1' }}</td>
                 <!-- Ajustar según el nombre exacto de la columna -->
             </tr>
         @endforeach

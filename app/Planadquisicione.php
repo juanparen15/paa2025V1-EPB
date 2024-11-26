@@ -127,6 +127,7 @@ class Planadquisicione extends Model
 
     public function intervalo()
     {
-        return $this->belongsTo(Intervalo::class);
+        return $this->belongsTo(Intervalo::class, 'intervalo_id');
     }
+    
 }

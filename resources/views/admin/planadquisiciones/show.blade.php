@@ -39,7 +39,7 @@
                     <div class="row">
                         <div class="col-sm-4 invoice-col">
                             <address>
-                                <strong>SIIPAA2023</strong><br>
+                                <strong>SIIPAA <?= date('Y') ?></strong><br>
                                 {{ $planadquisicione->id }}
                             </address>
                         </div>
