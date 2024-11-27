@@ -6,6 +6,8 @@ use App\Http\Controllers\ChartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\CustomForgotPasswordController;
 use App\Http\Controllers\PlanadquisicioneController;
+use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,16 +27,20 @@ Route::get('/', function () {
 Route::get('/vista', function () {
     return view('vista');
 });
+Route::resource('users', 'UserController')->names('users');
+
 Route::resource('empresa', 'EmpresaController')->only([
-    'index', 'edit', 'update'
+    'index',
+    'edit',
+    'update'
 ])->names('empresa');
-Route::resource('areas','AreaController')->except([
+Route::resource('areas', 'AreaController')->except([
     'show',
 ])->names('admin.areas');
 Route::resource('clases', 'ClaseController')->except([
     'show',
 ])->names('admin.clases');
-Route::resource('dependencias','DependenciaController')->except([
+Route::resource('dependencias', 'DependenciaController')->except([
     'show',
 ])->names('admin.dependencias');
 Route::resource('estadovigencias', 'EstadovigenciaController')->except([
@@ -61,10 +67,11 @@ Route::resource('acta', 'ActaController')->except([
 Route::resource('planadquisiciones', 'PlanadquisicioneController')->names('planadquisiciones');
 route::get('retirar_producto/{planadquisicione}/de/{producto}', 'PlanadquisicioneController@retirar_producto')->name('retirar_producto');
 Route::get('exportar_planadquisiciones_excel/{planadquisicion}', 'PlanadquisicioneController@exportar_planadquisiciones_excel')->name('exportar_planadquisiciones_excel');
-Route::resource('productos','ProductoController')->except([
-    'show','destroy'
+Route::resource('productos', 'ProductoController')->except([
+    'show',
+    'destroy'
 ])->names('admin.productos');
-Route::get('importar_datos', function() {
+Route::get('importar_datos', function () {
     return view('admin.importar_datos');
 })->name('importar_datos');
 Route::get('productos/{slug}/destroy', 'ProductoController@destroy')->name('admin.productos.destroy');
@@ -97,7 +104,6 @@ route::get('planadquisiciones/{planadquisicion}/agregar_producto', 'Planadquisic
 Route::get('/planadquisiciones/{planadquisicione}/agregar_producto', [PlanadquisicioneController::class, 'agregar_producto'])->name('planadquisiciones.agregar_producto');
 
 route::post('planadquisiciones/{planadquisicion}/agregar_producto_store', 'PlanadquisicioneController@agregar_producto_store')->name('agregar_producto_store');
-Route::resource('users', 'UserController')->names('users');
 // ================== rutas para importar datos 
 Route::post('areas_import', 'ImportExcelController@areas_import')->name('areas.import.excel');
 Route::post('dependencias_import', 'ImportExcelController@dependencias_import')->name('dependencias.import.excel');
@@ -119,3 +125,7 @@ Route::get('password/reset', [CustomForgotPasswordController::class, 'showLinkRe
 
 // Ruta para enviar el enlace de restablecimiento de contraseña
 Route::post('password/email', [CustomForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+
+// Route::middleware(['auth', 'role:Admin'])->group(function () {
+//     Route::resource('users', UserController::class);
+// });

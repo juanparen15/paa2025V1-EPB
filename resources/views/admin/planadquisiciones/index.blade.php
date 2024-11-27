@@ -26,7 +26,7 @@
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
-        <!-- /.content-header -->
+        <!-- /.content-header -->   
 
         <!-- Main content -->
         <div class="content">
@@ -83,7 +83,7 @@
                                 @foreach ($planadquisiciones as $planadquisicion)
                                     <tr>
                                         <td>{{ $planadquisicion->id }}</td>
-                                        <td>{{ $planadquisicion->mese->nommes }}</td>
+                                        <td>{{ $planadquisicion->mese->nommes ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->intervalo->intervalo ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->duracont }}</td>
                                         <td>{{ $planadquisicion->modalidade->detmodalidad ?? 'N/A' }}</td>
@@ -91,15 +91,15 @@
                                         <td>{{ $planadquisicion->valorestimadocont }} COP</td>
                                         <td>{{ $planadquisicion->descripcioncont }}</td>
                                         <td>{{ $planadquisicion->valorestimadovig }} COP</td>
-                                        <td>{{ $planadquisicion->requiproyecto->detproyeto }}</td>
-                                        <td>{{ $planadquisicion->area->nomarea }}</td>
+                                        <td>{{ $planadquisicion->requiproyecto->detproyeto ?? 'N/A' }}</td>
+                                        <td>{{ $planadquisicion->area->nomarea ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->codbpim }}</td>
-                                        <td>{{ $planadquisicion->requipoai->detpoai }}</td>
-                                        <td>{{ $planadquisicion->tipozona->tipozona }}</td>
-                                        <td>{{ $planadquisicion->tipoadquisicione->dettipoadquisicion }}</td>
-                                        <td>{{ $planadquisicion->tipoproceso->dettipoproceso }}</td>
-                                        <td>{{ $planadquisicion->tipoprioridade->detprioridad }}</td>
-                                        <td>{{ $planadquisicion->estadovigencia->detestadovigencia }}</td>
+                                        <td>{{ $planadquisicion->requipoai->detpoai ?? 'N/A' }}</td>
+                                        <td>{{ $planadquisicion->tipozona->tipozona ?? 'N/A' }}</td>
+                                        <td>{{ $planadquisicion->tipoadquisicione->dettipoadquisicion ?? 'N/A' }}</td>
+                                        <td>{{ $planadquisicion->tipoproceso->dettipoproceso ?? 'N/A' }}</td>
+                                        <td>{{ $planadquisicion->tipoprioridade->detprioridad ?? 'N/A' }}</td>
+                                        <td>{{ $planadquisicion->estadovigencia->detestadovigencia ?? 'N/A' }}</td>
 
 
                                         <td>
@@ -139,6 +139,10 @@
                                             </form>
                                         </td>
                                     </tr>
+                                    {{-- @empty
+                                        <tr>
+                                            <td colspan="5">No hay registros disponibles para el año seleccionado.</td>
+                                        </tr> --}}
                                 @endforeach
                             </tbody>
                         </table>
@@ -214,6 +218,7 @@
             })
         }
     </script>
+
     <!-- DataTables  & Plugins -->
     {!! Html::script('adminlte/plugins/datatables/jquery.dataTables.min.js') !!}
     {!! Html::script('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') !!}

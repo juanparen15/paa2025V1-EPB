@@ -6,9 +6,19 @@ use Illuminate\Http\Request;
 use App\User;
 use Spatie\Permission\Models\Role;
 use Illuminate\Support\Facades\Hash;
+use Spatie\Permission\Traits\HasRoles;
 
 class UserController extends Controller
 {
+    use HasRoles;
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('role:Admin', ['only' => ['index']]);
+    }
+
+
     public function index()
     {
         $users = User::orderBy('id', 'DESC')->get();
@@ -22,12 +32,12 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'=> ['required'],
-            'email'=> ['required'],
-            'password'=> ['required'],
-            'apellido'=> ['required'],
-            'telefono'=> ['required'],
-            'documento'=> ['required']
+            'name' => ['required'],
+            'email' => ['required'],
+            'password' => ['required'],
+            'apellido' => ['required'],
+            'telefono' => ['required'],
+            'documento' => ['required']
         ]);
 
         $user = User::create([
@@ -40,10 +50,10 @@ class UserController extends Controller
         ]);
 
         //avatar
-        if($request->hasFile('avatar')){
+        if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
-            $name = time().$file->getClientOriginalName();
-            $file->move(public_path().'/adminlte/dist/img/', $name);
+            $name = time() . $file->getClientOriginalName();
+            $file->move(public_path() . '/adminlte/dist/img/', $name);
             $user->avatar = $name;
             $user->save();
         }
@@ -64,12 +74,12 @@ class UserController extends Controller
     public function update(Request $request, User $user)
     {
         $request->validate([
-            'name'=> ['required'],
-            'email'=> ['required'],
-            'password'=> ['required'],
-            'apellido'=> ['required'],
-            'telefono'=> ['required'],
-            'documento'=> ['required']
+            'name' => ['required'],
+            'email' => ['required'],
+            'password' => ['required'],
+            'apellido' => ['required'],
+            'telefono' => ['required'],
+            'documento' => ['required']
         ]);
         $user->update([
             'name' => $request->name,
@@ -80,10 +90,10 @@ class UserController extends Controller
             'documento' => $request->documento
         ]);
 
-        if($request->hasFile('avatar')){
+        if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
-            $name = time().$file->getClientOriginalName();
-            $file->move(public_path().'/adminlte/dist/img/', $name);
+            $name = time() . $file->getClientOriginalName();
+            $file->move(public_path() . '/adminlte/dist/img/', $name);
             $user->avatar = $name;
             $user->save();
         }
@@ -107,10 +117,10 @@ class UserController extends Controller
             'documento' => $request->documento
         ]);
 
-        if($request->hasFile('avatar')){
+        if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');
-            $name = time().$file->getClientOriginalName();
-            $file->move(public_path().'/adminlte/dist/img/', $name);
+            $name = time() . $file->getClientOriginalName();
+            $file->move(public_path() . '/adminlte/dist/img/', $name);
             $user->avatar = $name;
             $user->save();
         }
