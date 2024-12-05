@@ -30,8 +30,15 @@ class HomeController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
+        $years = Planadquisicione::selectRaw('YEAR(created_at) as year')
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year');
+
+        $vigencia = $request->get('vigencia', date('Y'));
+
         $users = User::all()->count();
         $products = Producto::all()->count();
         $clases = Clase::all()->count();
@@ -39,20 +46,21 @@ class HomeController extends Controller
         $familias = Familia::all()->count();
         $dependencias = Dependencia::all()->count();
         $areas = Area::all()->count();
-        $adquisiciones0 = Planadquisicione::all()->count();
-        $adquisiciones = Planadquisicione::all()->count();
-        $adquisicionesDependencia = Planadquisicione::all()->count();
-        $adquisiciones1 = Planadquisicione::all()->count();
-        $adquisiciones3 = Planadquisicione::all()->count();
-        $adquisiciones2 = Planadquisicione::with('area')->get();
-        $adquisicionesSeries = Planadquisicione::all()->count();
+        $adquisiciones0 = Planadquisicione::whereYear('created_at', $vigencia)->count();
+        $adquisiciones = Planadquisicione::whereYear('created_at', $vigencia)->count();
+        $adquisicionesDependencia = Planadquisicione::whereYear('created_at', $vigencia)->count();
+        $adquisiciones1 = Planadquisicione::whereYear('created_at', $vigencia)->count();
+        $adquisiciones3 = Planadquisicione::whereYear('created_at', $vigencia)->count();
+        $adquisiciones2 = Planadquisicione::with('area')->whereYear('created_at', $vigencia)->get();
+        $adquisicionesSeries = Planadquisicione::whereYear('created_at', $vigencia)->count();
 
         if (auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Supervisor')) {
             $planes = Planadquisicione::select(
                 DB::raw("count(*) as count"),
                 DB::raw("count(*) as totalmes"),
                 DB::raw("DATE_FORMAT(created_at,'%M %Y') as mes")
-            )->groupBy('mes')->take(12)->get();
+            )->whereYear('planadquisiciones.created_at', $vigencia)
+                ->groupBy('mes')->take(12)->get();
 
 
             $adquisiciones3 = Planadquisicione::select(
@@ -61,6 +69,7 @@ class HomeController extends Controller
                 DB::raw("MONTH(created_at) as mes"),
                 DB::raw("YEAR(created_at) as anyo")
             )
+                ->whereYear('planadquisiciones.created_at', $vigencia)
                 ->groupBy('anyo', 'mes')
                 // ->orderBy('anyo', 'desc')
                 // ->orderBy('mes', 'desc')
@@ -117,6 +126,7 @@ class HomeController extends Controller
                 ->join('areas', 'planadquisiciones.area_id', '=', 'areas.id') // Realiza una join con la tabla de áreas
                 // DB::raw("count(area_id) as area_adq"))
                 // DB::raw("DATE_FORMAT(fechaInicial,'%M %Y') as anyo"))
+                ->whereYear('planadquisiciones.created_at', $vigencia)
                 ->groupBy(DB::raw("area_id"))
                 ->get();
             // Accede a los datos de la relación
@@ -134,6 +144,7 @@ class HomeController extends Controller
             )
                 ->join('areas', 'planadquisiciones.area_id', '=', 'areas.id') // Unimos con la tabla 'areas' usando 'area_id'
                 ->join('dependencias', 'areas.dependencia_id', '=', 'dependencias.id') // Unimos 'areas' con 'dependencias' usando 'dependencia_id'
+                ->whereYear('planadquisiciones.created_at', $vigencia)
                 ->groupBy('areas.dependencia_id') // Agrupamos por 'dependencia_id'
                 ->get();
 
@@ -158,6 +169,7 @@ class HomeController extends Controller
                 ->join('tipoadquisiciones', 'planadquisiciones.tipoadquisicione_id', '=', 'tipoadquisiciones.id') // Realiza una join con la tabla de áreas
                 // DB::raw("count(area_id) as area_adq"))
                 // DB::raw("DATE_FORMAT(fechaInicial,'%M %Y') as anyo"))
+                ->whereYear('planadquisiciones.created_at', $vigencia)
                 ->groupBy(DB::raw("tipoadquisicione_id"))
                 ->get();
             // Accede a los datos de la relación
@@ -178,7 +190,8 @@ class HomeController extends Controller
                 DB::raw("count(*) as count"),
                 DB::raw("count(*) as totalmes"),
                 DB::raw("DATE_FORMAT(created_at,'%M %Y') as mes")
-            )->groupBy('mes')->take(12)->get();
+            )->whereYear('planadquisiciones.created_at', $vigencia)
+                ->groupBy('mes')->take(12)->get();
 
             $adquisiciones3 = Planadquisicione::where('user_id', auth()->user()->id)->select(
                 DB::raw("count(*) as count"),
@@ -186,6 +199,7 @@ class HomeController extends Controller
                 DB::raw("MONTH(created_at) as mes"),
                 DB::raw("YEAR(created_at) as anyo")
             )
+                ->whereYear('planadquisiciones.created_at', $vigencia)
                 ->groupBy('anyo', 'mes')
                 // ->orderBy('anyo', 'desc')
                 // ->orderBy('mes', 'desc')
@@ -244,6 +258,7 @@ class HomeController extends Controller
                 ->join('tipoadquisiciones', 'planadquisiciones.tipoadquisicione_id', '=', 'tipoadquisiciones.id') // Realiza una join con la tabla de áreas
                 // DB::raw("count(area_id) as area_adq"))
                 // DB::raw("DATE_FORMAT(fechaInicial,'%M %Y') as anyo"))
+                ->whereYear('planadquisiciones.created_at', $vigencia)
                 ->groupBy(DB::raw("tipoadquisicione_id"))
                 ->get();
             // Accede a los datos de la relación
@@ -268,6 +283,7 @@ class HomeController extends Controller
             )
                 ->join('areas', 'planadquisiciones.area_id', '=', 'areas.id') // Unimos con la tabla 'areas' usando 'area_id'
                 ->join('dependencias', 'areas.dependencia_id', '=', 'dependencias.id') // Unimos 'areas' con 'dependencias' usando 'dependencia_id'
+                ->whereYear('planadquisiciones.created_at', $vigencia)
                 ->groupBy('areas.dependencia_id') // Agrupamos por 'dependencia_id'
                 ->get();
 
@@ -280,6 +296,6 @@ class HomeController extends Controller
             }
         }
 
-        return view('home', compact('users', 'products', 'clases', 'segmentos', 'familias', 'adquisiciones', 'adquisicionesDependencia', 'adquisiciones0', 'adquisiciones1', 'adquisiciones2', 'adquisiciones3', 'adquisicionesSeries', 'dependencias', 'areas', 'planes'));
+        return view('home', compact('vigencia', 'years', 'users', 'products', 'clases', 'segmentos', 'familias', 'adquisiciones', 'adquisicionesDependencia', 'adquisiciones0', 'adquisiciones1', 'adquisiciones2', 'adquisiciones3', 'adquisicionesSeries', 'dependencias', 'areas', 'planes'));
     }
 }

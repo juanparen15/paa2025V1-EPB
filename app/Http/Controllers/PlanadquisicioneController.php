@@ -36,15 +36,35 @@ class PlanadquisicioneController extends Controller
 
         ]);
     }
-    public function index()
+    // public function index()
+    // {
+    //     if (auth()->user()->hasRole('Admin')) {
+    //         $planadquisiciones = Planadquisicione::get();
+    //     } else {
+    //         $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
+    //     }
+    //     return view('admin.planadquisiciones.index', compact('planadquisiciones'));
+    // }
+
+    public function index(Request $request)
     {
+        $years = Planadquisicione::selectRaw('YEAR(created_at) as year')
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year');
+
+        $vigencia = $request->get('vigencia', date('Y'));
+
         if (auth()->user()->hasRole('Admin')) {
-            $planadquisiciones = Planadquisicione::get();
+            $planadquisiciones = Planadquisicione::whereYear('created_at', $vigencia)->get();
         } else {
-            $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
+            $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)
+                ->whereYear('created_at', $vigencia)
+                ->get();
         }
-        return view('admin.planadquisiciones.index', compact('planadquisiciones'));
+        return view('admin.planadquisiciones.index', compact('planadquisiciones', 'years', 'vigencia'));
     }
+
 
     public function create()
     {
@@ -215,7 +235,7 @@ class PlanadquisicioneController extends Controller
             'user_id' => auth()->user()->id,
             'slug' => $newSlug,
         ]);
-        
+
         // foreach ($request->producto_id as $key =>$product){
         //     $results[] = array("producto_id" => $request->producto_id[$key]);
         // }
@@ -241,7 +261,7 @@ class PlanadquisicioneController extends Controller
     public function exportar_planadquisiciones_excel(Planadquisicione $planadquisicion)
     {
 
-        return Excel::download(new PlanadquisicioneExport($planadquisicion->id), 'plan_de_adquisicion' . $planadquisicion->id . '.xlsx');
+        return Excel::download(new PlanadquisicioneExport($planadquisicion->id), 'plan_de_adquisicion_' . $planadquisicion->id . '.xlsx');
         // 
         // plan_de_adquisicion 
     }
@@ -255,11 +275,30 @@ class PlanadquisicioneController extends Controller
         $planadquisicion->productos()->attach($request->producto_id);
         return redirect()->route('planadquisiciones.show', $planadquisicion)->with('flash', 'actualizado');
     }
-    public function export()
+    public function export(Request $request)
     {
-
-
-
-        return Excel::download(new PlanadquisicioneAllExport, 'Plan de Adquisiciones en General.xlsx');
+        // Obtenemos los años disponibles
+        $years = Planadquisicione::selectRaw('YEAR(created_at) as year')
+            ->distinct()
+            ->orderBy('year', 'desc')
+            ->pluck('year');
+    
+        // Obtenemos la vigencia seleccionada o usamos el año actual por defecto
+        $vigencia = $request->get('vigencia', date('Y'));
+    
+        // Aplicamos el filtro de vigencia
+        $query = Planadquisicione::whereYear('created_at', $vigencia);
+    
+        if (!auth()->user()->hasRole('Admin') && !auth()->user()->hasRole('Supervisor')) {
+            // Filtramos por usuario si no es Admin ni Supervisor
+            $query->where('user_id', auth()->user()->id);
+        }
+    
+        // Cargamos las relaciones necesarias
+        $planadquisiciones = $query->with(['productos', 'mese', 'modalidade', 'fuente', 'vigenfutura', 'estadovigencia'])->get();
+    
+        // Exportamos a Excel
+        return Excel::download(new PlanadquisicioneAllExport($planadquisiciones), "plan_adquisiciones_{$vigencia}.xlsx");
     }
+    
 }

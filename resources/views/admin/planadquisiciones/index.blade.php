@@ -26,7 +26,7 @@
                 </div><!-- /.row -->
             </div><!-- /.container-fluid -->
         </div>
-        <!-- /.content-header -->   
+        <!-- /.content-header -->
 
         <!-- Main content -->
         <div class="content">
@@ -42,20 +42,59 @@
                             </a>
                             {{-- @endcan --}}
 
-                            @can('planadquisiciones.export')
+                            {{-- @can('planadquisiciones.export')
                                 <a href="{{ route('planadquisiciones.export') }}" class="btn btn-success">
                                     <i class="far fa-file-excel"></i> Exportar Todo
                                 </a>
-                            @endcan
+                            @endcan --}}
+
+                            <form method="GET" action="{{ route('planadquisiciones.export') }}" class="form-inline">
+                                <input type="hidden" name="vigencia" value="{{ request('vigencia', date('Y')) }}">
+                                {{-- <a class="btn btn-success"><i class="far fa-file-excel"></i> Exportar Todo
+                                </a> --}}
+                                <button type="submit" class="btn btn-success"><i class="far fa-file-excel"></i> Exportar Todo</button>
+                            </form>
                         </div>
 
+                        <div class="card-tools">
+                            <form method="GET" action="{{ route('planadquisiciones.index') }}" class="form-inline">
+                                <label for="vigencia" class="mr-2">Seleccionar Vigencia:</label>
+                                <select name="vigencia" id="vigencia" class="form-control mr-3"
+                                    onchange="this.form.submit()">
+                                    <option value="{{ date('Y') }}"
+                                        {{ request('vigencia') == date('Y') ? 'selected' : '' }}>Vigencia Actual</option>
+                                    @foreach ($years as $year)
+                                        <option value="{{ $year }}"
+                                            {{ request('vigencia') == $year ? 'selected' : '' }}>Vigencia
+                                            {{ $year }}</option>
+                                    @endforeach
+                                </select>
+                            </form>
+
+                            {{-- <form method="GET" action="{{ route('planadquisiciones.export') }}" class="form-inline">
+                                <label for="vigencia" class="mr-2">Seleccionar Vigencia:</label>
+                                <select name="vigencia" id="vigencia" class="form-control mr-3"
+                                    onchange="this.form.submit()">
+                                    <option value="{{ date('Y') }}"
+                                        {{ request('vigencia') == date('Y') ? 'selected' : '' }}>
+                                        Vigencia Actual
+                                    </option>
+                                    @foreach ($years as $year)
+                                        <option value="{{ $year }}"
+                                            {{ request('vigencia') == $year ? 'selected' : '' }}>
+                                            Vigencia {{ $year }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </form> --}}
+                        </div>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive">
                         <table id="example2" class="table table-hover text-nowrap">
                             <thead>
                                 <tr>
-                                    <th>SIIPAA <?= date('Y') ?></th>
+                                    <th>SIIPAA {{ request('vigencia') ?? date('Y') }}</th>
                                     <th>Fecha Estimada de Inicio del Proceso(Mes)</th>
                                     <th>Duración del contrato (intervalo: días, meses, años)</th>
                                     <th>Cantidad de días, meses, años</th>
@@ -73,6 +112,7 @@
                                     <th>Tipo de Proceso Contractual</th>
                                     <th>Tipo de Prioridad</th>
                                     <th>Estado Solicitud Vigencias Futuras</th>
+                                    <th>Fecha de Registro</th>
                                     <th>ACCIONES</th>
 
                                 </tr>
@@ -100,6 +140,7 @@
                                         <td>{{ $planadquisicion->tipoproceso->dettipoproceso ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->tipoprioridade->detprioridad ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->estadovigencia->detestadovigencia ?? 'N/A' }}</td>
+                                        <td>{{ $planadquisicion->created_at ?? 'N/A' }}</td>
 
 
                                         <td>
@@ -108,34 +149,57 @@
                                                 @csrf
                                                 @method('delete')
 
+                                                @if (request('vigencia') == date('Y'))
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="{{ route('agregar_producto', $planadquisicion) }}">Agregar
+                                                        producto</a>
+                                                    <a class="btn btn-success btn-sm"
+                                                        href="{{ route('exportar_planadquisiciones_excel', $planadquisicion) }}">
+                                                        <i class="far fa-file-excel"></i> Exportar
+                                                    </a>
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="{{ route('planadquisiciones.edit', $planadquisicion) }}">Editar</a>
+                                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                                @else
+                                                    {{-- @can('exportar_planadquisiciones_excel') --}}
+                                                    <a class="btn btn-success btn-sm"
+                                                        href="{{ route('exportar_planadquisiciones_excel', $planadquisicion) }}">
+                                                        <i class="far fa-file-excel"></i> Exportar
+                                                    </a>
+                                                    {{-- @endcan --}}
+
+                                                    {{-- @can('planadquisiciones.show') --}}
+                                                    <a class="btn btn-info btn-sm"
+                                                        href="{{ route('planadquisiciones.show', $planadquisicion) }}">Detalles</a>
+                                                    {{-- @endcan --}}
+                                                @endif
+                                                {{-- Común para todas las vigencias
+                                                <a class="btn btn-info btn-sm"
+                                                    href="{{ route('planadquisiciones.show', $planadquisicion) }}">Detalles</a> --}}
+
                                                 {{-- @can('agregar_producto') --}}
-                                                <a class="btn btn-primary btn-sm"
+                                                {{-- <a class="btn btn-primary btn-sm"
                                                     href="{{ route('agregar_producto', $planadquisicion) }}">
                                                     Agregar producto
-                                                </a>
+                                                </a> --}}
                                                 {{-- @endcan --}}
 
                                                 {{-- @can('exportar_planadquisiciones_excel') --}}
-                                                <a class="btn btn-success btn-sm"
+                                                {{-- <a class="btn btn-success btn-sm"
                                                     href="{{ route('exportar_planadquisiciones_excel', $planadquisicion) }}">
                                                     <i class="far fa-file-excel"></i> Exportar
-                                                </a>
+                                                </a> --}}
                                                 {{-- @endcan --}}
 
-                                                @can('planadquisiciones.show')
-                                                    <a class="btn btn-info btn-sm"
-                                                        href="{{ route('planadquisiciones.show', $planadquisicion) }}">Detalles</a>
-                                                @endcan
 
+                                                {{-- @can('planadquisiciones.edit') --}}
+                                                {{-- <a class="btn btn-primary btn-sm"
+                                                        href="{{ route('planadquisiciones.edit', $planadquisicion) }}">Editar</a> --}}
+                                                {{-- @endcan --}}
 
-                                                @can('planadquisiciones.edit')
-                                                    <a class="btn btn-primary btn-sm"
-                                                        href="{{ route('planadquisiciones.edit', $planadquisicion) }}">Editar</a>
-                                                @endcan
-
-                                                @can('planadquisiciones.destroy')
-                                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
-                                                @endcan
+                                                {{-- @can('planadquisiciones.destroy') --}}
+                                                {{-- <button type="submit" class="btn btn-danger btn-sm">Eliminar</button> --}}
+                                                {{-- @endcan --}}
                                             </form>
                                         </td>
                                     </tr>
@@ -147,6 +211,7 @@
                             </tbody>
                         </table>
                     </div>
+
                     <!-- /.card-body -->
                 </div>
                 <!-- /.card -->

@@ -19,6 +19,8 @@ class PlanadquisicioneExport implements FromView
 
     public function view(): View
     {
+        $vigencia = request()->get('vigencia', date('Y'));
+        
         $plan = Planadquisicione::find($this->id);
         return view('admin.planadquisiciones.plantilla_de_excel', [
             'plan' => $plan

@@ -151,7 +151,40 @@
                                     <i class="fas fa-chart-pie mr-1"></i>
                                     Plan de Adquisiciones
                                 </h3>
-                                @can('planadquisiciones.export')
+                                <div class="card-tools">
+                                    <ul class="nav nav-pills ml-auto">
+                                        <li class="nav-item">
+                                            <form method="GET" action="{{ route('planadquisiciones.export') }}"
+                                                class="form-inline">
+                                                <input type="hidden" name="vigencia"
+                                                    value="{{ request('vigencia', date('Y')) }}">
+                                                {{-- <a class="btn btn-success"><i class="far fa-file-excel"></i> Exportar Todo
+                                    </a> --}}
+                                                <button type="submit" class="btn btn-success"><i
+                                                        class="far fa-file-excel"></i>
+                                                    Exportar Todo</button>
+                                            </form>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div class="card-tools">
+                                    <form method="GET" action="{{ route('home') }}"
+                                        class="form-inline">
+                                        <label for="vigencia" class="mr-2">Seleccionar Vigencia:</label>
+                                        <select name="vigencia" id="vigencia" class="form-control mr-3"
+                                            onchange="this.form.submit()">
+                                            <option value="{{ date('Y') }}"
+                                                {{ request('vigencia') == date('Y') ? 'selected' : '' }}>Vigencia Actual
+                                            </option>
+                                            @foreach ($years as $year)
+                                                <option value="{{ $year }}"
+                                                    {{ request('vigencia') == $year ? 'selected' : '' }}>Vigencia
+                                                    {{ $year }}</option>
+                                            @endforeach
+                                        </select>
+                                    </form>
+                                </div>
+                                {{-- @can('planadquisiciones.export')
                                     <div class="card-tools">
                                         <ul class="nav nav-pills ml-auto">
                                             <li class="nav-item">
@@ -160,7 +193,7 @@
                                             </li>
                                         </ul>
                                     </div>
-                                @endcan
+                                @endcan --}}
                             </div>
                             <figure class="highcharts-figure">
                                 <div id="containerDependenciaColumn"></div>

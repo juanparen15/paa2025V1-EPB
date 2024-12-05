@@ -69,7 +69,7 @@
                         <div class="col-sm-4 invoice-col">
                             <address>
                                 <strong>Duración del contrato (intervalo: días, meses, años)</strong><br>
-                                {{ $planadquisicione->intervalo->intervalo }}
+                                {{ $planadquisicione->intervalo->intervalo ?? 'No Encontrado' }}
                             </address>
                         </div>
 
@@ -193,11 +193,13 @@
                                         <td scope="row">{{ $producto->id }}</td>
                                         <td>{{ $producto->detproducto }}</td>
                                         {{-- @can('retirar_producto') --}}
+                                        @if (request('vigencia') == date('Y'))
                                             <td>
                                                 <a href="{{ route('retirar_producto', [$planadquisicione, $producto]) }}"
                                                     class="btn btn-danger btn-sm">Eliminar</a>
                                             </td>
-                                        {{-- @endcan --}}
+                                            {{-- @endcan --}}
+                                        @endif
                                     </tr>
                                 @endforeach
 
