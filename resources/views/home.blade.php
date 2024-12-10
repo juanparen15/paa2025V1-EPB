@@ -168,8 +168,7 @@
                                     </ul>
                                 </div>
                                 <div class="card-tools">
-                                    <form method="GET" action="{{ route('home') }}"
-                                        class="form-inline">
+                                    <form method="GET" action="{{ route('home') }}" class="form-inline">
                                         <label for="vigencia" class="mr-2">Seleccionar Vigencia:</label>
                                         <select name="vigencia" id="vigencia" class="form-control mr-3"
                                             onchange="this.form.submit()">
@@ -218,12 +217,18 @@
                                 </div>
                             </figure>
 
-                            <figure class="highcharts-figure">
-                                <div id="container"></div>
-                            </figure>
-                            <figure class="highcharts-figure">
-                                <div id="containerUserSeries"></div>
-                            </figure>
+                            <div class="row">
+                                <section class="col-lg-6">
+                                    <figure class="highcharts-figure">
+                                        <div id="container"></div>
+                                    </figure>
+                                </section>
+                                <section class="col-lg-6">
+                                    <figure class="highcharts-figure">
+                                        <div id="containerUserSeries"></div>
+                                    </figure>
+                                </section>
+                            </div>
                             <figure class="highcharts-figure">
                                 <div id="containerTime"></div>
                             </figure>
