@@ -67,11 +67,21 @@ class PlanadquisicioneController extends Controller
         return view('admin.planadquisiciones.index', compact('planadquisiciones', 'years', 'vigencia'));
     }
 
+    // public function indexByArea($areaId)
+    // {
+    //     $areas = Area::findOrFail($areaId);
+    //     $planadquisiciones = Planadquisicione::where('area_id', $areaId)->get();
+
+    //     return view('admin.planadquisiciones.index', compact('planadquisiciones', 'areas'));
+    // }
+
 
     public function create()
     {
         $productos = Producto::all();
-        $areas = Area::get();
+        // $areas = Area::all();
+        $userArea = auth()->user()->area;
+        $areas = collect([$userArea]);
         $estadovigencias = Estadovigencia::get();
         $fuentes = Fuente::get();
         $meses = Mese::get();

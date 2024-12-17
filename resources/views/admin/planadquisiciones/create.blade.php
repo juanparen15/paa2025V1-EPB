@@ -335,8 +335,25 @@
                                 @enderror --}}
                                 </div>
                             </div>
-
                             <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="area_id">Dependencia o Área:</label>
+                                    <select class="select2 @error('area_id') is-invalid @enderror" name="area_id"
+                                        id="area_id" style="width: 100%;">
+                                        <option disabled selected>Seleccione una Dependencia o Área</option>
+                                        @foreach ($areas as $area)
+                                            <option value="{{ $area->id }}" selected>{{ $area->nomarea }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('area_id')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            {{-- <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="area_id">Dependencia o Área:</label>
                                     <select class="select2 @error('area_id') is-invalid @enderror" name="area_id"
@@ -348,13 +365,13 @@
                                             </option>
                                         @endforeach
                                     </select>
-                                    {{-- @error('area_id')
+                                    @error('area_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror --}}
+                                @enderror
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <!-- /.card-body -->

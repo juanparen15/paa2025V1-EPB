@@ -18,7 +18,9 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $fillable = [
 
-        'name', 'email', 'password',
+        'name',
+        'email',
+        'password',
         'apellido',
         'telefono',
         'documento',
@@ -30,7 +32,8 @@ class User extends Authenticatable implements MustVerifyEmail
      * @var array
      */
     protected $hidden = [
-        'password', 'remember_token',
+        'password',
+        'remember_token',
     ];
 
     /**
@@ -41,4 +44,9 @@ class User extends Authenticatable implements MustVerifyEmail
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function area()
+    {
+        return $this->belongsTo(Area::class, 'areas_id');
+    }
 }
