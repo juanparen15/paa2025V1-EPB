@@ -114,10 +114,21 @@ class Planadquisicione extends Model
 
     //Relacion Muchos a Muchos
 
+    // public function productos()
+    // {
+    //     return $this->belongsToMany(Producto::class);
+    // }
+
     public function productos()
     {
-        return $this->belongsToMany(Producto::class);
+        return $this->belongsToMany(Producto::class, 'planadquisicione_producto', 'planadquisicione_id', 'producto_id');
     }
+
+    public function clases()
+    {
+        return $this->belongsToMany(Clase::class, 'planadquisicione_producto', 'planadquisicione_id', 'clase_id');
+    }
+
     //Relacion Muchos a Muchos
 
     public function detalleplanadquisiciones()
@@ -129,5 +140,4 @@ class Planadquisicione extends Model
     {
         return $this->belongsTo(Intervalo::class, 'intervalo_id');
     }
-    
 }

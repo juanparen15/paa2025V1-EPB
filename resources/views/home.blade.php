@@ -304,59 +304,57 @@
     <script src="https://code.highcharts.com/modules/exporting.js"></script>
     <script src="https://code.highcharts.com/modules/export-data.js"></script>
     <script src="https://code.highcharts.com/modules/accessibility.js"></script>
-    @if (auth()->user()->hasRole('Admin'))
-        <script>
-            // var planadquisiciones = <?php echo json_encode($adquisiciones); ?>;
-            // Data retrieved from https://netmarketshare.com
-            Highcharts.chart('container', {
-                chart: {
-                    plotBackgroundColor: null,
-                    plotBorderWidth: null,
-                    plotShadow: false,
-                    type: 'pie'
-                },
-                credits: false,
-                title: {
-                    text: 'Registros por Oficina Productora',
-                    align: 'left'
-                },
-                tooltip: {
-                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
-                },
-                accessibility: {
-                    point: {
-                        valueSuffix: '%'
-                    }
-                },
-                plotOptions: {
-                    pie: {
-                        allowPointSelect: true,
-                        cursor: 'pointer',
-                        dataLabels: {
-                            enabled: true,
-                            format: '<b>{point.name}</b>: {point.percentage:.1f}%',
-                            style: {
-                                color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
-                            }
+    <script>
+        // var planadquisiciones = <?php echo json_encode($adquisiciones); ?>;
+        // Data retrieved from https://netmarketshare.com
+        Highcharts.chart('container', {
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                type: 'pie'
+            },
+            credits: false,
+            title: {
+                text: 'Registros por Oficina Productora',
+                align: 'left'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            accessibility: {
+                point: {
+                    valueSuffix: '%'
+                }
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f}%',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                         }
                     }
-                },
+                }
+            },
 
-                series: [{
-                    type: 'pie',
-                    name: 'Valores',
-                    colorByPoint: true,
-                    data: [<?php foreach ($adquisiciones0 as $adq) { ?> {
-                            name: '<?php echo $adq->area_name; ?>',
-                            y: <?php echo $adq->adq; ?>
-                        },
-                        <?php } ?>
-                    ]
+            series: [{
+                type: 'pie',
+                name: 'Valores',
+                colorByPoint: true,
+                data: [<?php foreach ($adquisiciones0 as $adq) { ?> {
+                        name: '<?php echo $adq->area_name; ?>',
+                        y: <?php echo $adq->adq; ?>
+                    },
+                    <?php } ?>
+                ]
 
-                }]
-            });
-        </script>
-    @endif
+            }]
+        });
+    </script>
     <script>
         // var planadquisiciones = <?php echo json_encode($adquisicionesSeries); ?>;
         // Data retrieved from https://netmarketshare.com

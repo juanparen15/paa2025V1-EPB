@@ -43,34 +43,32 @@
                     <div class="form-group">
                         <label for="segmento_id">Segmentos</label>
                         <select id="segmento_id" name="segmento_id" class="form-control select2" required>
-                            <option value="" disabled selected> -- Seleccione un Segmento --</option>
+                            <option value="" disabled selected>-- Seleccione un Segmento --</option>
                             @foreach ($segmentos as $segmento)
-                                <option value="{{ $segmento->id }}">{{ $segmento->id }}
-                                    - {{ $segmento->detsegmento }}</option>
+                                <option value="{{ $segmento->id }}">{{ $segmento->id }} - {{ $segmento->detsegmento }}
+                                </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="familia_id">Familias</label>
                         <select id="familia_id" name="familia_id" class="form-control select2" required>
-                            <option value="" disabled selected> -- Seleccione una Familia --</option>
-
+                            <option value="" disabled selected>-- Seleccione una Familia --</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="clase_id">Clases</label>
-                        <select id="clase_id" name="clase_id" class="form-control select2" required>
-                            <option value="" disabled selected> -- Seleccione una Clase --</option>
-
+                        <select id="clase_id" name="clase_id" class="form-control select2">
+                            <option value="" disabled selected>-- Seleccione una Clase --</option>
                         </select>
                     </div>
                     <div class="form-group">
                         <label for="producto_id">Productos</label>
-                        <select id="producto_id" name="producto_id" class="form-control select2" required>
-                            <option value="" disabled selected> -- Seleccione un Producto --</option>
-
+                        <select id="producto_id" name="producto_id" class="form-control select2">
+                            <option value="" disabled selected>-- Seleccione un Producto --</option>
                         </select>
                     </div>
+
 
                 </div>
 
@@ -100,85 +98,147 @@
     </script>
 
     <script>
-        var segmento_id = $('#segmento_id');
-        var familia_id = $('#familia_id');
-        var clase_id = $('#clase_id');
-        var producto_id = $('#producto_id');
+        // var segmento_id = $('#segmento_id');
+        // var familia_id = $('#familia_id');
+        // var clase_id = $('#clase_id');
+        // var producto_id = $('#producto_id');
 
 
         $(document).ready(function() {
+            var segmento_id = $('#segmento_id');
+            var familia_id = $('#familia_id');
+            var clase_id = $('#clase_id');
+            var producto_id = $('#producto_id');
+
             segmento_id.change(function() {
                 var segmento_id = $(this).val();
                 if (segmento_id) {
                     $.get('/get-familias/' + segmento_id, function(data) {
-                        $('#familia_id').empty();
-                        $('#familia_id').append(
-                            '<option disabled selected>-- Seleccione una Familia --</option>'
-                        );
+                        $('#familia_id').empty().append(
+                            '<option disabled selected>-- Seleccione una Familia --</option>');
                         $.each(data, function(key, value) {
-                            $('#familia_id').append('<option value="' +
-                                value.id + '" name="' + value.detfamilia +'">'+ value.id + ' - ' + value.detfamilia + '</option>');
+                            $('#familia_id').append('<option value="' + value.id + '">' +
+                                value.id + ' - ' + value.detfamilia + '</option>');
                         });
-                        // Selecciona automáticamente la primera opción
-                        $('#familia_id').val($('#familia_id option:first')
-                            .val());
                     });
                 } else {
-                    // Si no se selecciona ninguna, limpia la lista
-                    $('#familia_id').empty();
+                    $('#familia_id, #clase_id, #producto_id').empty();
                 }
             });
-        });
 
-        $(document).ready(function() {
             familia_id.change(function() {
                 var familia_id = $(this).val();
                 if (familia_id) {
                     $.get('/get-clases/' + familia_id, function(data) {
-                        $('#clase_id').empty();
-
-
-                        $('#clase_id').append(
-                            '<option disabled selected>-- Seleccione una Clase --</option>'
-                        );
+                        $('#clase_id').empty().append(
+                            '<option disabled selected>-- Seleccione una Clase --</option>');
                         $.each(data, function(key, value) {
-                            $('#clase_id').append('<option value="' +
-                                value.id + '" name="' + value.detclase + '">'+ value.id + ' - ' + value.detclase + '</option>');
+                            $('#clase_id').append('<option value="' + value.id + '">' +
+                                value.id + ' - ' + value.detclase + '</option>');
                         });
-                        // Selecciona automáticamente la primera opción
-                        $('#clase_id').val($('#clase_id option:first').val());
                     });
                 } else {
-                    // Si no se selecciona ninguna ciudad, limpia la lista de estandares
-                    $('#clase_id').empty();
+                    $('#clase_id, #producto_id').empty();
                 }
             });
-        });
 
-        $(document).ready(function() {
             clase_id.change(function() {
                 var clase_id = $(this).val();
                 if (clase_id) {
                     $.get('/get-productos/' + clase_id, function(data) {
-                        $('#producto_id').empty();
-
-
-                        $('#producto_id').append(
-                            '<option disabled selected>-- Seleccione un Producto --</option>'
-                        );
+                        $('#producto_id').empty().append(
+                            '<option disabled selected>-- Seleccione un Producto --</option>');
                         $.each(data, function(key, value) {
-                            $('#producto_id').append('<option value="' +
-                                value.id + '" name="' + value.detproducto + '">'+ value.id + ' - ' + value.detproducto + '</option>');
+                            $('#producto_id').append('<option value="' + value.id + '">' +
+                                value.id + ' - ' + value.detproducto + '</option>');
                         });
-                        // Selecciona automáticamente la primera opción
-                        $('#producto_id').val($('#producto_id option:first')
-                            .val());
                     });
                 } else {
-                    // Si no se selecciona ninguna ciudad, limpia la lista de estandares
                     $('#producto_id').empty();
                 }
             });
         });
+
+
+
+
+        //     $(document).ready(function() {
+        //         segmento_id.change(function() {
+        //             var segmento_id = $(this).val();
+        //             if (segmento_id) {
+        //                 $.get('/get-familias/' + segmento_id, function(data) {
+        //                     $('#familia_id').empty();
+        //                     $('#familia_id').append(
+        //                         '<option disabled selected>-- Seleccione una Familia --</option>'
+        //                     );
+        //                     $.each(data, function(key, value) {
+        //                         $('#familia_id').append('<option value="' +
+        //                             value.id + '" name="' + value.detfamilia + '">' + value
+        //                             .id + ' - ' + value.detfamilia + '</option>');
+        //                     });
+        //                     // Selecciona automáticamente la primera opción
+        //                     $('#familia_id').val($('#familia_id option:first')
+        //                         .val());
+        //                 });
+        //             } else {
+        //                 // Si no se selecciona ninguna, limpia la lista
+        //                 $('#familia_id').empty();
+        //             }
+        //         });
+        //     });
+
+        //     $(document).ready(function() {
+        //         familia_id.change(function() {
+        //             var familia_id = $(this).val();
+        //             if (familia_id) {
+        //                 $.get('/get-clases/' + familia_id, function(data) {
+        //                     $('#clase_id').empty();
+
+
+        //                     $('#clase_id').append(
+        //                         '<option disabled selected>-- Seleccione una Clase --</option>'
+        //                     );
+        //                     $.each(data, function(key, value) {
+        //                         $('#clase_id').append('<option value="' +
+        //                             value.id + '" name="' + value.detclase + '">' + value
+        //                             .id + ' - ' + value.detclase + '</option>');
+        //                     });
+        //                     // Selecciona automáticamente la primera opción
+        //                     $('#clase_id').val($('#clase_id option:first').val());
+        //                 });
+        //             } else {
+        //                 // Si no se selecciona ninguna ciudad, limpia la lista de estandares
+        //                 $('#clase_id').empty();
+        //             }
+        //         });
+        //     });
+
+        //     $(document).ready(function() {
+        //         clase_id.change(function() {
+        //             var clase_id = $(this).val();
+        //             if (clase_id) {
+        //                 $.get('/get-productos/' + clase_id, function(data) {
+        //                     $('#producto_id').empty();
+
+
+        //                     $('#producto_id').append(
+        //                         '<option disabled selected>-- Seleccione un Producto --</option>'
+        //                     );
+        //                     $.each(data, function(key, value) {
+        //                         $('#producto_id').append('<option value="' +
+        //                             value.id + '" name="' + value.detproducto + '">' + value
+        //                             .id + ' - ' + value.detproducto + '</option>');
+        //                     });
+        //                     // Selecciona automáticamente la primera opción
+        //                     $('#producto_id').val($('#producto_id option:first')
+        //                         .val());
+        //                 });
+        //             } else {
+        //                 // Si no se selecciona ninguna ciudad, limpia la lista de estandares
+        //                 $('#producto_id').empty();
+        //             }
+        //         });
+        //     });
+        // 
     </script>
 @endsection

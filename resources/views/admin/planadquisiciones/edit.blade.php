@@ -121,7 +121,7 @@
                                 <label for="codbpim">Código Banco De Programas Y Proyectos De Inversión
                                     Nacional--BPIN:</label>
                                 <input type="text" name="codbpim" id="codbpim"
-                                    value="{{ old('codbpim', $planadquisicione->codbpim) }}" class="form-control" required>
+                                    value="{{ old('codbpim', $planadquisicione->codbpim) }}" class="form-control">
                             </div>
                         </div>
 
@@ -205,7 +205,7 @@
                         </div>
 
 
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="form-group">
                                 <label for="tipoproceso_id">Tipo de Proceso Contractual:</label>
                                 <select class="select2 @error('tipoproceso_id') is-invalid @enderror"
@@ -223,7 +223,7 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="col-md-4">
                             <div class="form-group">

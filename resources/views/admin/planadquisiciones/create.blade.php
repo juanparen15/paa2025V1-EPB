@@ -125,10 +125,9 @@
                                         Nacional--BPIN:</label>
                                     <input type="text"
                                         placeholder="Escriba el Código Banco De Programas Y Proyectos De Inversión Nacional--BPIN"
-                                        name="codbpim" id="codbpim" class="form-control" required>
+                                        name="codbpim" id="codbpim" class="form-control">
                                 </div>
                             </div>
-
 
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -215,7 +214,7 @@
                             </div>
 
 
-                            <div class="col-md-4">
+                            {{-- <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="tipoproceso_id">Tipo de Proceso Contractual:</label>
                                     <select class="select2 @error('tipoproceso_id') is-invalid @enderror"
@@ -227,13 +226,13 @@
                                                 {{ $tipoproceso->dettipoproceso }}</option>
                                         @endforeach
                                     </select>
-                                    {{-- @error('tipoproceso_id')
+                                    @error('tipoproceso_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror --}}
+                                @enderror
                                 </div>
-                            </div>
+                            </div> --}}
 
 
                             <div class="col-md-4">

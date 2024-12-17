@@ -52,7 +52,8 @@
                                 <input type="hidden" name="vigencia" value="{{ request('vigencia', date('Y')) }}">
                                 {{-- <a class="btn btn-success"><i class="far fa-file-excel"></i> Exportar Todo
                                 </a> --}}
-                                <button type="submit" class="btn btn-success"><i class="far fa-file-excel"></i> Exportar Todo</button>
+                                <button type="submit" class="btn btn-success"><i class="far fa-file-excel"></i> Exportar
+                                    Todo</button>
                             </form>
                         </div>
 
@@ -109,7 +110,7 @@
                                     <th>¿Se Requiere POAI?</th>
                                     <th>Tipo de Zona de Ejecucion del Contrato</th>
                                     <th>Tipo de Adquisición o Contrato</th>
-                                    <th>Tipo de Proceso Contractual</th>
+                                    {{-- <th>Tipo de Proceso Contractual</th> --}}
                                     <th>Tipo de Prioridad</th>
                                     <th>Estado Solicitud Vigencias Futuras</th>
                                     <th>Fecha de Registro</th>
@@ -133,11 +134,11 @@
                                         <td>{{ $planadquisicion->valorestimadovig }} COP</td>
                                         <td>{{ $planadquisicion->requiproyecto->detproyeto ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->area->nomarea ?? 'N/A' }}</td>
-                                        <td>{{ $planadquisicion->codbpim }}</td>
+                                        <td>{{ $planadquisicion->codbpim ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->requipoai->detpoai ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->tipozona->tipozona ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->tipoadquisicione->dettipoadquisicion ?? 'N/A' }}</td>
-                                        <td>{{ $planadquisicion->tipoproceso->dettipoproceso ?? 'N/A' }}</td>
+                                        {{-- <td>{{ $planadquisicion->tipoproceso->dettipoproceso ?? 'N/A' }}</td> --}}
                                         <td>{{ $planadquisicion->tipoprioridade->detprioridad ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->estadovigencia->detestadovigencia ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->created_at ?? 'N/A' }}</td>
@@ -150,16 +151,18 @@
                                                 @method('delete')
 
                                                 @if (request('vigencia') == date('Y'))
-                                                    <a class="btn btn-primary btn-sm"
+                                                    {{-- <a class="btn btn-primary btn-sm"
                                                         href="{{ route('agregar_producto', $planadquisicion) }}">Agregar
-                                                        producto</a>
+                                                        producto</a> --}}
                                                     <a class="btn btn-success btn-sm"
                                                         href="{{ route('exportar_planadquisiciones_excel', $planadquisicion) }}">
                                                         <i class="far fa-file-excel"></i> Exportar
                                                     </a>
-                                                    <a class="btn btn-primary btn-sm"
-                                                        href="{{ route('planadquisiciones.edit', $planadquisicion) }}">Editar</a>
-                                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                                    {{-- <a class="btn btn-primary btn-sm"
+                                                        href="{{ route('planadquisiciones.edit', $planadquisicion) }}">Editar</a> --}}
+                                                    {{-- <button type="submit" class="btn btn-danger btn-sm">Eliminar</button> --}}
+                                                    <a class="btn btn-info btn-sm"
+                                                        href="{{ route('planadquisiciones.show', $planadquisicion) }}">Detalles</a>
                                                 @else
                                                     {{-- @can('exportar_planadquisiciones_excel') --}}
                                                     <a class="btn btn-success btn-sm"
@@ -173,6 +176,18 @@
                                                         href="{{ route('planadquisiciones.show', $planadquisicion) }}">Detalles</a>
                                                     {{-- @endcan --}}
                                                 @endif
+
+                                                @if (auth()->user()->hasRole('Admin') || auth()->user()->hasRole('Supervisor'))
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="{{ route('planadquisiciones.edit', $planadquisicion) }}">Editar</a>
+
+                                                    <button type="submit" class="btn btn-danger btn-sm">Eliminar</button>
+                                                @else
+                                                    <a class="btn btn-primary btn-sm"
+                                                        href="{{ route('agregar_producto', $planadquisicion) }}">Agregar
+                                                        producto</a>
+                                                @endif
+
                                                 {{-- Común para todas las vigencias
                                                 <a class="btn btn-info btn-sm"
                                                     href="{{ route('planadquisiciones.show', $planadquisicion) }}">Detalles</a> --}}

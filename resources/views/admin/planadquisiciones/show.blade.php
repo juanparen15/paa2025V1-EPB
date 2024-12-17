@@ -90,7 +90,7 @@
                         <div class="col-sm-4 invoice-col">
                             <address>
                                 <strong>Código Banco De Programas Y Proyectos De Inversión Nacional--BPIN:</strong><br>
-                                {{ $planadquisicione->codbpim }}
+                                {{ $planadquisicione->codbpim ?? 'N/A' }}
                             </address>
                         </div>
 
@@ -130,12 +130,12 @@
                             </address>
                         </div>
 
-                        <div class="col-sm-4 invoice-col">
+                        {{-- <div class="col-sm-4 invoice-col">
                             <address>
                                 <strong>Tipo de Proceso Contractual</strong><br>
                                 {{ $planadquisicione->tipoproceso->dettipoproceso }}
                             </address>
-                        </div>
+                        </div> --}}
 
                         <div class="col-sm-4 invoice-col">
                             <address>
@@ -181,7 +181,8 @@
                             <thead class="thead-inverse">
                                 <tr>
                                     <th>CODIGO UNSPSC:</th>
-                                    <th>Producto</th>
+                                    <th>Descripción</th>
+                                    <th>Tipo</th>
                                     @can('retirar_producto')
                                         <th>Acciones</th>
                                     @endcan
@@ -190,22 +191,36 @@
                             <tbody>
                                 @foreach ($planadquisicione->productos as $producto)
                                     <tr>
-                                        <td scope="row">{{ $producto->id }}</td>
+                                        <td>{{ $producto->id }}</td>
                                         <td>{{ $producto->detproducto }}</td>
-                                        {{-- @can('retirar_producto') --}}
-                                        @if (request('vigencia') == date('Y'))
+                                        <td>Producto</td>
+                                        @can('retirar_producto')
                                             <td>
                                                 <a href="{{ route('retirar_producto', [$planadquisicione, $producto]) }}"
                                                     class="btn btn-danger btn-sm">Eliminar</a>
                                             </td>
-                                            {{-- @endcan --}}
-                                        @endif
+                                        @endcan
                                     </tr>
                                 @endforeach
 
+                                @foreach ($planadquisicione->clases as $clase)
+                                    <tr>
+                                        <td>{{ $clase->id }}</td>
+                                        <td>{{ $clase->detclase }}</td>
+                                        <td>Clase</td>
+                                        @can('retirar_producto')
+                                            <td>
+                                                <a href="{{ route('retirar_clase', [$planadquisicione, $clase]) }}"
+                                                    class="btn btn-danger btn-sm">Eliminar</a>
+                                            </td>
+                                        @endcan
+                                    </tr>
+                                @endforeach
                             </tbody>
+
                         </table>
                     </div>
+
                 </div>
                 <!-- /.card-body -->
             </div>
@@ -223,7 +238,6 @@
                     @endcan
 
                 </div>
-
         </section>
         <!-- /.content -->
     </div>

@@ -65,7 +65,8 @@ Route::resource('acta', 'ActaController')->except([
 ])->names('admin.acta');
 
 Route::resource('planadquisiciones', 'PlanadquisicioneController')->names('planadquisiciones');
-route::get('retirar_producto/{planadquisicione}/de/{producto}', 'PlanadquisicioneController@retirar_producto')->name('retirar_producto');
+Route::get('retirar_producto/{planadquisicione}/de/{producto}', 'PlanadquisicioneController@retirar_producto')->name('retirar_producto');
+Route::get('retirar_clase/{planadquisicione}/de/{clase}', 'PlanadquisicioneController@retirar_clase')->name('retirar_clase');
 Route::get('exportar_planadquisiciones_excel/{planadquisicion}', 'PlanadquisicioneController@exportar_planadquisiciones_excel')->name('exportar_planadquisiciones_excel');
 Route::resource('productos', 'ProductoController')->except([
     'show',

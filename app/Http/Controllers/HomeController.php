@@ -222,7 +222,28 @@ class HomeController extends Controller
                 11 => 'noviembre',
                 12 => 'diciembre'
             ];
-
+            
+            $adquisiciones0 = Planadquisicione::select(
+                'area_id',
+                DB::raw('count(*) as adq'),
+                DB::raw('MAX(areas.nomarea) as area_name'),
+                // ->groupby(DB::raw("valorestimadocont"))
+                // ->pluck('count')
+                // DB::raw("DATE_FORMAT(fechaInicial,'%M %Y') as anyo"),
+                DB::raw("count(valorestimadocont) as adq")
+            )
+                ->join('areas', 'planadquisiciones.area_id', '=', 'areas.id') // Realiza una join con la tabla de áreas
+                // DB::raw("count(area_id) as area_adq"))
+                // DB::raw("DATE_FORMAT(fechaInicial,'%M %Y') as anyo"))
+                ->whereYear('planadquisiciones.created_at', $vigencia)
+                ->groupBy(DB::raw("area_id"))
+                ->get();
+            // Accede a los datos de la relación
+            foreach ($adquisiciones0 as $adq) {
+                $area = $adq->area; // "area" es el nombre del método de relación en el modelo Planadquisicione
+                $nombreArea = $area->nomarea; // Accede a los campos de la relación (ejemplo: "nomarea")
+                // Puedes usar $nombreArea en tu lógica aquí
+            }
 
 
             // Accede a los datos de la relación
