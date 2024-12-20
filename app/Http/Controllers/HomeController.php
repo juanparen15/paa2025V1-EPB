@@ -37,7 +37,8 @@ class HomeController extends Controller
             ->orderBy('year', 'desc')
             ->pluck('year');
 
-        $vigencia = $request->get('vigencia', date('Y'));
+        // $vigencia = $request->get('vigencia', date('Y'));
+        $vigencia = $request->get('vigencia', '2025');
 
         $users = User::all()->count();
         $products = Producto::all()->count();
@@ -222,7 +223,7 @@ class HomeController extends Controller
                 11 => 'noviembre',
                 12 => 'diciembre'
             ];
-            
+
             $adquisiciones0 = Planadquisicione::select(
                 'area_id',
                 DB::raw('count(*) as adq'),

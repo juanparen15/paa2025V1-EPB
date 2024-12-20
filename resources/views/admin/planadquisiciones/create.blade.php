@@ -353,6 +353,15 @@
                                 </div>
                             </div>
 
+                            <div class="col-md-4">
+                                <div class="form-group">
+                                    <label for="created_at">Fecha de Creación:</label>
+                                    <input type="date" disabled placeholder="Fecha de Creación" name="created_at"
+                                        id="created_at" class="form-control" value="2025-01-01">
+                                </div>
+                            </div>
+
+
                             {{-- <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="area_id">Dependencia o Área:</label>

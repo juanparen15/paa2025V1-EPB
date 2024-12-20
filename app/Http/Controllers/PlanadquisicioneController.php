@@ -48,6 +48,25 @@ class PlanadquisicioneController extends Controller
     //     return view('admin.planadquisiciones.index', compact('planadquisiciones'));
     // }
 
+    // public function index(Request $request)
+    // {
+    //     $years = Planadquisicione::selectRaw('YEAR(created_at) as year')
+    //         ->distinct()
+    //         ->orderBy('year', 'desc')
+    //         ->pluck('year');
+
+    //     $vigencia = $request->get('vigencia', date('Y'));
+
+    //     if (auth()->user()->hasRole('Admin')) {
+    //         $planadquisiciones = Planadquisicione::whereYear('created_at', $vigencia)->get();
+    //     } else {
+    //         $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)
+    //             ->whereYear('created_at', $vigencia)
+    //             ->get();
+    //     }
+    //     return view('admin.planadquisiciones.index', compact('planadquisiciones', 'years', 'vigencia'));
+    // }
+
     public function index(Request $request)
     {
         $years = Planadquisicione::selectRaw('YEAR(created_at) as year')
@@ -55,7 +74,8 @@ class PlanadquisicioneController extends Controller
             ->orderBy('year', 'desc')
             ->pluck('year');
 
-        $vigencia = $request->get('vigencia', date('Y'));
+        // Cambiar la vigencia predeterminada a 2025
+        $vigencia = $request->get('vigencia', '2025');
 
         if (auth()->user()->hasRole('Admin')) {
             $planadquisiciones = Planadquisicione::whereYear('created_at', $vigencia)->get();
@@ -64,8 +84,12 @@ class PlanadquisicioneController extends Controller
                 ->whereYear('created_at', $vigencia)
                 ->get();
         }
+
         return view('admin.planadquisiciones.index', compact('planadquisiciones', 'years', 'vigencia'));
     }
+
+
+
 
     // public function indexByArea($areaId)
     // {
@@ -144,6 +168,7 @@ class PlanadquisicioneController extends Controller
         $planadquisicione = Planadquisicione::create($request->all() + [
             'user_id' => auth()->user()->id,
             'slug' => $slugWithId,
+            'created_at' => '2025-01-01 00:00:00',
         ]);
         // foreach ($request->producto_id as $key =>$product){
         //     $results[] = array("producto_id" => $request->producto_id[$key]);

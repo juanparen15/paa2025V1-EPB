@@ -72,6 +72,23 @@
                                 </select>
                             </form>
 
+                        {{-- <div class="card-tools">
+                            <form method="GET" action="{{ route('planadquisiciones.index') }}" class="form-inline">
+                                <label for="vigencia" class="mr-2">Seleccionar Vigencia:</label>
+                                <select name="vigencia" id="vigencia" class="form-control mr-3"
+                                    onchange="this.form.submit()">
+                                    <option value="2025" {{ request('vigencia') == '2025' ? 'selected' : '' }}>Vigencia
+                                        2025</option>
+                                    @foreach ($years as $year)
+                                        <option value="{{ $year }}"
+                                            {{ request('vigencia') == $year ? 'selected' : '' }}>
+                                            Vigencia {{ $year }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </form> --}}
+
+
                             {{-- <form method="GET" action="{{ route('planadquisiciones.export') }}" class="form-inline">
                                 <label for="vigencia" class="mr-2">Seleccionar Vigencia:</label>
                                 <select name="vigencia" id="vigencia" class="form-control mr-3"
@@ -123,7 +140,7 @@
 
                                 @foreach ($planadquisiciones as $planadquisicion)
                                     <tr>
-                                        <td>{{ $planadquisicion->id }}</td>
+                                        <td>{{ $planadquisicion->id_vigencia }}</td>
                                         <td>{{ $planadquisicion->mese->nommes ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->intervalo->intervalo ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->duracont }}</td>

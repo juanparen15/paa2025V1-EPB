@@ -27,6 +27,7 @@ class Planadquisicione extends Model
         'user_id',
         'intervalo_id',
         'slug',
+        'created_at',
     ];
 
     public function getRouteKeyName()

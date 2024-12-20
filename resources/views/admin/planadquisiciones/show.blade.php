@@ -39,8 +39,9 @@
                     <div class="row">
                         <div class="col-sm-4 invoice-col">
                             <address>
-                                <strong>SIIPAA <?= date('Y') ?></strong><br>
-                                {{ $planadquisicione->id }}
+                                <strong>SIIPAA</strong><br>
+                                {{-- <strong>SIIPAA {{ request('vigencia') ?? date('Y') }}</strong><br> --}}
+                                {{ $planadquisicione->id_vigencia }}
                             </address>
                         </div>
 
