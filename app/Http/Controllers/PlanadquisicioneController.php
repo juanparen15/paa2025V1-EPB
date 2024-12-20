@@ -38,34 +38,6 @@ class PlanadquisicioneController extends Controller
 
         ]);
     }
-    // public function index()
-    // {
-    //     if (auth()->user()->hasRole('Admin')) {
-    //         $planadquisiciones = Planadquisicione::get();
-    //     } else {
-    //         $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)->get();
-    //     }
-    //     return view('admin.planadquisiciones.index', compact('planadquisiciones'));
-    // }
-
-    // public function index(Request $request)
-    // {
-    //     $years = Planadquisicione::selectRaw('YEAR(created_at) as year')
-    //         ->distinct()
-    //         ->orderBy('year', 'desc')
-    //         ->pluck('year');
-
-    //     $vigencia = $request->get('vigencia', date('Y'));
-
-    //     if (auth()->user()->hasRole('Admin')) {
-    //         $planadquisiciones = Planadquisicione::whereYear('created_at', $vigencia)->get();
-    //     } else {
-    //         $planadquisiciones = Planadquisicione::where('user_id', auth()->user()->id)
-    //             ->whereYear('created_at', $vigencia)
-    //             ->get();
-    //     }
-    //     return view('admin.planadquisiciones.index', compact('planadquisiciones', 'years', 'vigencia'));
-    // }
 
     public function index(Request $request)
     {
@@ -75,6 +47,8 @@ class PlanadquisicioneController extends Controller
             ->pluck('year');
 
         // Cambiar la vigencia predeterminada a 2025
+        //     $vigencia = $request->get('vigencia', date('Y'));
+
         $vigencia = $request->get('vigencia', '2025');
 
         if (auth()->user()->hasRole('Admin')) {
@@ -87,18 +61,6 @@ class PlanadquisicioneController extends Controller
 
         return view('admin.planadquisiciones.index', compact('planadquisiciones', 'years', 'vigencia'));
     }
-
-
-
-
-    // public function indexByArea($areaId)
-    // {
-    //     $areas = Area::findOrFail($areaId);
-    //     $planadquisiciones = Planadquisicione::where('area_id', $areaId)->get();
-
-    //     return view('admin.planadquisiciones.index', compact('planadquisiciones', 'areas'));
-    // }
-
 
     public function create()
     {
@@ -145,11 +107,6 @@ class PlanadquisicioneController extends Controller
             'intervalo_id' => ['required'],
         ]);
 
-        // $planadquisicione = Planadquisicione::create($request->all()+[
-        //     'user_id'=>auth()->user()->id,
-        //     'slug'=> Str::slug($request->descripcioncont , '-'),  
-        // ]);
-
         // Generar el slug base
         $slug = Str::slug($request->descripcioncont);
 
@@ -170,14 +127,6 @@ class PlanadquisicioneController extends Controller
             'slug' => $slugWithId,
             'created_at' => '2025-01-01 00:00:00',
         ]);
-        // foreach ($request->producto_id as $key =>$product){
-        //     $results[] = array("producto_id" => $request->producto_id[$key]);
-        // }
-        // $planadquisicione->productos()->sync($results);
-        //planadquisicione_producto  create_planadquisicione_producto_table
-        // return redirect()->route('planadquisiciones.index')->with('flash', 'registrado');
-
-        // Redirigir a la vista de agregar producto con el plan creado
         return redirect()->route('planadquisiciones.agregar_producto', $planadquisicione->slug)
             ->with('flash', 'Plan de adquisiciones registrado correctamente');
     }
@@ -228,7 +177,6 @@ class PlanadquisicioneController extends Controller
 
     public function update(Request $request, Planadquisicione $planadquisicione)
     {
-
         $request->validate([
             'descripcioncont' => ['required'],
             'valorestimadocont' => ['required'],
@@ -250,11 +198,6 @@ class PlanadquisicioneController extends Controller
             'intervalo_id' => ['required'],
         ]);
 
-        // $planadquisicione->update($request->all() + [
-        //     'user_id' => auth()->user()->id,
-        //     'slug' => Str::slug($request->descripcioncont, '-'),
-        // ]);
-
         // Crear el nuevo slug sin el -id
         $newSlugBase = Str::slug($request->descripcioncont);
 
@@ -275,27 +218,25 @@ class PlanadquisicioneController extends Controller
             'slug' => $newSlug,
         ]);
 
-        // foreach ($request->producto_id as $key =>$product){
-        //     $results[] = array("producto_id" => $request->producto_id[$key]);
-        // }
-        // $planadquisicione->productos()->sync($results);
-
         return redirect()->route('planadquisiciones.index')->with('flash', 'actualizado');
     }
 
-    public function destroy(Planadquisicione $planadquisicion)
+    // public function destroy(Planadquisicione $planadquisicion)
+    // {
+    //     $planadquisicion->delete();
+    //     return redirect()->route('planadquisiciones.index')->with('flash', 'eliminado');
+    // }
+
+    public function destroy(Planadquisicione $planadquisicione)
     {
-        $planadquisicion->delete();
-        return redirect()->route('planadquisiciones.index')->with('flash', 'eliminado');
+        try {
+            $planadquisicione->delete();
+            return redirect()->route('planadquisiciones.index')->with('success', 'Registro eliminado correctamente.');
+        } catch (\Exception $e) {
+            return redirect()->route('planadquisiciones.index')->with('error', 'No se pudo eliminar el registro: ' . $e->getMessage());
+        }
     }
 
-    // public function retirar_producto(Planadquisicione $planadquisicione, Producto $producto)
-    // {
-    //     $producto_id = $producto->id;
-
-    //     $planadquisicione->productos()->detach($producto_id);
-    //     return redirect()->route('planadquisiciones.show', $planadquisicione)->with('flash', 'actualizado');
-    // }
 
     public function retirar_producto(Planadquisicione $planadquisicione, Producto $producto)
     {
@@ -321,29 +262,11 @@ class PlanadquisicioneController extends Controller
         return redirect()->back()->withErrors('El código UNSPSC no está asociado con este plan.');
     }
 
-
     public function exportar_planadquisiciones_excel(Planadquisicione $planadquisicion)
     {
 
         return Excel::download(new PlanadquisicioneExport($planadquisicion->id), 'plan_de_adquisicion_' . $planadquisicion->id . '.xlsx');
-        // 
-        // plan_de_adquisicion 
     }
-    // public function agregar_producto(Planadquisicione $planadquisicion)
-    // {
-    //     $segmentos = Segmento::all();
-    //     return view('admin.planadquisiciones.agregar_producto', compact('planadquisicion', 'segmentos'));
-    // }
-
-    // public function agregar_producto(Planadquisicione $planadquisicion)
-    // {
-    //     $segmentos = Segmento::all(); // Cargar todos los segmentos disponibles
-    //     $clases = Clase::all(); // Cargar todas las clases
-    //     $productos = Producto::all(); // Cargar todos los productos
-
-    //     return view('admin.planadquisiciones.agregar_producto', compact('planadquisicion', 'segmentos', 'clases', 'productos'));
-    // }
-
     public function agregar_producto(Planadquisicione $planadquisicion)
     {
         $segmentos = Segmento::all();
@@ -353,39 +276,6 @@ class PlanadquisicioneController extends Controller
 
         return view('admin.planadquisiciones.agregar_producto', compact('planadquisicion', 'segmentos', 'clases', 'familias', 'productos'));
     }
-
-
-    // public function agregar_producto_store(Request $request, Planadquisicione $planadquisicion)
-    // {
-    //     $planadquisicion->productos()->attach($request->producto_id);
-    //     return redirect()->route('planadquisiciones.show', $planadquisicion)->with('flash', 'actualizado');
-    // }
-
-    // public function agregar_producto_store(Request $request, Planadquisicione $planadquisicion)
-    // {
-    //     $request->validate([
-    //         'segmento_id' => ['required', 'exists:segmentos,id'],
-    //         'clase_id' => ['nullable', 'exists:clases,id'],
-    //         'producto_id' => ['nullable', 'exists:productos,id'],
-    //     ]);
-
-    //     // Verificar que al menos uno (clase o producto) sea proporcionado
-    //     if (!$request->clase_id && !$request->producto_id) {
-    //         return redirect()->back()->withErrors('Debe seleccionar al menos una clase o un producto.');
-    //     }
-
-    //     // Registrar el producto o clase al Plan de Adquisición
-    //     if ($request->producto_id) {
-    //         $planadquisicion->productos()->attach($request->producto_id);
-    //     }
-
-    //     if ($request->clase_id) {
-    //         $planadquisicion->clases()->attach($request->clase_id); // Relación en caso de clases
-    //     }
-
-    //     return redirect()->route('planadquisiciones.show', $planadquisicion)
-    //         ->with('flash', 'Productos o clases agregados correctamente al plan de adquisiciones.');
-    // }
 
     public function agregar_producto_store(Request $request, Planadquisicione $planadquisicion)
     {
@@ -408,35 +298,6 @@ class PlanadquisicioneController extends Controller
         return redirect()->route('planadquisiciones.show', $planadquisicion)
             ->with('flash', 'Registro actualizado correctamente.');
     }
-
-
-    // public function agregar_producto_store(Request $request, Planadquisicione $planadquisicion)
-    // {
-    //     $request->validate([
-    //         'segmento_id' => ['required', 'exists:segmentos,id'],
-    //         'clase_id' => ['nullable', 'exists:clases,id'],
-    //         'familia_id' => ['nullable', 'exists:familias,id'], // Validación de familia
-    //         'producto_id' => ['nullable', 'exists:productos,id'],
-    //     ]);
-
-    //     // Asegurarse de que al menos familia o producto esté presente
-    //     if (!$request->familia_id && !$request->producto_id) {
-    //         return redirect()->back()->withErrors('Debe seleccionar al menos una familia o un producto.');
-    //     }
-
-    //     // Guardar las relaciones opcionales
-    //     if ($request->producto_id) {
-    //         $planadquisicion->productos()->attach($request->producto_id);
-    //     }
-
-    //     // if ($request->familia_id) {
-    //     //     $planadquisicion->familias()->attach($request->familia_id); // Relación para familia
-    //     // }
-
-    //     return redirect()->route('planadquisiciones.show', $planadquisicion)
-    //         ->with('flash', 'Familias o productos agregados correctamente al plan de adquisiciones.');
-    // }
-
 
     public function export(Request $request)
     {

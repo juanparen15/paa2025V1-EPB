@@ -72,7 +72,7 @@
                                 </select>
                             </form>
 
-                        {{-- <div class="card-tools">
+                            {{-- <div class="card-tools">
                             <form method="GET" action="{{ route('planadquisiciones.index') }}" class="form-inline">
                                 <label for="vigencia" class="mr-2">Seleccionar Vigencia:</label>
                                 <select name="vigencia" id="vigencia" class="form-control mr-3"

@@ -5,9 +5,9 @@
         <div class="login-logo">
             <a href="{{ route('welcome') }}">
                 <b>Plan de Adquisiciones</b>
-                <script type="text/javascript">
+                {{-- <script type="text/javascript">
                     document.write(new Date().getFullYear());
-                </script>
+                </script> --}}
             </a>
         </div>
         <!-- /.login-logo -->
