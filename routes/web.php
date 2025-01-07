@@ -27,7 +27,11 @@ Route::get('/', function () {
 Route::get('/vista', function () {
     return view('vista');
 });
+
+Route::delete('users/{user}', [UserController::class, 'destroy'])->name('users.destroy');
+
 Route::resource('users', 'UserController')->names('users');
+
 
 Route::resource('empresa', 'EmpresaController')->only([
     'index',

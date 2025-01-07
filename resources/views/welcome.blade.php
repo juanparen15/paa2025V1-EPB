@@ -3,8 +3,8 @@
 
 @section('content')
     <div class="site-blocks-cover inner-page-cover overlay"
-        style="background-image: url(homeland/images/hero_bg_2024.jpg); height: 940px;" data-aos="fade"
-        data-stellar-background-ratio="0.8">
+        style="background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url(homeland/images/hero_bg_2025.jpg); height: 940px; background-size: cover; background-position: center;"
+        data-aos="fade" data-stellar-background-ratio="0.2">
         <div class="container">
             <div class="row align-items-center justify-content-center text-center">
                 <div class="col-md-10">
@@ -15,11 +15,12 @@
         </div>
     </div>
 
+
     <div class="site-section">
         <div class="container">
             <div class="row">
                 <div class="col-md-6" data-aos="fade-up" data-aos-delay="100">
-                    <img src="homeland/images/about.jpg" alt="Imagen sobre la empresa" class="img-fluid shadow rounded">
+                    <img src="homeland/images/logo2025.png" alt="Imagen sobre la empresa" class="img-fluid shadow rounded">
                 </div>
                 <div class="col-md-5 ml-auto" data-aos="fade-up" data-aos-delay="200">
                     <div class="card shadow-sm p-4">
@@ -61,7 +62,8 @@
                     </div>
                     <p>
                         <a href="{!! $empresa->url !!}" class="btn btn-primary py-3 px-5 rounded-0 btn-2"
-                            data-aos="zoom-in" data-aos-delay="300">Ir a la página de Alcaldía Municipal de Puerto Boyacá</a>
+                            data-aos="zoom-in" data-aos-delay="300">Ir a la página de las Empresas Públicas de Puerto
+                            Boyacá</a>
                     </p>
                 </div>
             </div>
@@ -73,31 +75,38 @@
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
             transition: transform 0.3s;
         }
+
         .shadow:hover {
             transform: scale(1.05);
         }
+
         .card {
             border: none;
             background-color: #f8f9fa;
             transition: background-color 0.3s;
         }
+
         .card:hover {
             background-color: #e9ecef;
         }
+
         .btn-2 {
             background-color: #007bff;
             border: none;
             transition: background-color 0.3s, transform 0.3s;
         }
+
         .btn-2:hover {
             background-color: #0056b3;
             transform: translateY(-2px);
         }
+
         .site-section-title h2 {
             position: relative;
             display: inline-block;
             padding-bottom: 10px;
         }
+
         .site-section-title h2:after {
             content: '';
             width: 100%;
@@ -108,6 +117,7 @@
             bottom: -5px;
             transition: width 0.3s;
         }
+
         .site-section-title h2:hover:after {
             width: 100%;
         }

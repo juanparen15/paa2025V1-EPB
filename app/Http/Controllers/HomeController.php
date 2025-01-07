@@ -184,6 +184,7 @@ class HomeController extends Controller
 
             foreach ($adquisiciones2 as $adq) {
                 $nombreArea = $adq->area->nomarea;
+                // $nombreArea = $adq->area->nomarea ?? '';
                 $valores[] = ['name' => $adq->valorestimadocont, 'y' => floatval($nombreArea)];
             }
         } else {

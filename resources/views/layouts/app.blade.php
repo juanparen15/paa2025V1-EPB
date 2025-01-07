@@ -20,7 +20,7 @@
     {!! Html::style('adminlte/dist/css/adminlte.min.css') !!}
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css">
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootswatch/4.3.1/lumen/bootstrap.min.css"> --}}
 </head>
 
 <body class="hold-transition login-page">

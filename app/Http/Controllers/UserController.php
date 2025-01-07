@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Area;
 use Illuminate\Http\Request;
 use App\User;
 use Spatie\Permission\Models\Role;
@@ -27,7 +28,8 @@ class UserController extends Controller
     public function create()
     {
         $roles = Role::all();
-        return view('admin.users.create', compact('roles'));
+        $areas = Area::all();
+        return view('admin.users.create', compact('roles', 'areas'));
     }
     public function store(Request $request)
     {
@@ -64,12 +66,14 @@ class UserController extends Controller
     }
     public function show(User $user)
     {
-        return view('admin.users.show', compact('user'));
+        $areas = Area::all();
+        return view('admin.users.show', compact('user', 'areas'));
     }
     public function edit(User $user)
     {
         $roles = Role::all();
-        return view('admin.users.edit', compact('roles', 'user'));
+        $areas = Area::all();
+        return view('admin.users.edit', compact('roles', 'user', 'areas'));
     }
     public function update(Request $request, User $user)
     {
