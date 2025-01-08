@@ -98,7 +98,7 @@
                                 </div>
                             </div>
 
-                            <div class="col-md-4">
+                            {{-- <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="requiproyecto_id">¿Se Requiere Proyecto?:</label>
                                     <select class="select2 @error('requiproyecto_id') is-invalid @enderror"
@@ -110,16 +110,16 @@
                                                 {{ $requiproyecto->detproyeto }}</option>
                                         @endforeach
                                     </select>
-                                    {{-- @error('requiproyecto_id')
+                                    @error('requiproyecto_id')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
-                                @enderror --}}
+                                @enderror
                                 </div>
-                            </div>
+                            </div> --}}
 
 
-                            <div class="col-md-4">
+                            {{-- <div class="col-md-4">
                                 <div class="form-group">
                                     <label for="codbpim">Código Banco De Programas Y Proyectos De Inversión
                                         Nacional--BPIN:</label>
@@ -127,7 +127,7 @@
                                         placeholder="Escriba el Código Banco De Programas Y Proyectos De Inversión Nacional--BPIN"
                                         name="codbpim" id="codbpim" class="form-control">
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -436,10 +436,6 @@
                     {
                         id: 'duracont',
                         message: 'Por favor, ingrese la duración del contrato.'
-                    },
-                    {
-                        id: 'requiproyecto_id',
-                        message: 'Por favor, indique si se requiere un proyecto.'
                     },
                     {
                         id: 'requipoai_id',

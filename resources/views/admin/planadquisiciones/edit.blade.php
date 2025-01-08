@@ -97,7 +97,7 @@
                         </div>
 
 
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="form-group">
                                 <label for="requiproyecto_id">¿Se Requiere Proyecto?:</label>
                                 <select class="select2 @error('requiproyecto_id') is-invalid @enderror"
@@ -114,16 +114,16 @@
                                     </span>
                                 @enderror
                             </div>
-                        </div>
+                        </div> --}}
 
-                        <div class="col-md-4">
+                        {{-- <div class="col-md-4">
                             <div class="form-group">
                                 <label for="codbpim">Código Banco De Programas Y Proyectos De Inversión
                                     Nacional--BPIN:</label>
                                 <input type="text" name="codbpim" id="codbpim"
                                     value="{{ old('codbpim', $planadquisicione->codbpim) }}" class="form-control">
                             </div>
-                        </div>
+                        </div> --}}
 
                         <div class="col-md-4">
                             <div class="form-group">

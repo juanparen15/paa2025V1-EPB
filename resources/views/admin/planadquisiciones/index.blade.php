@@ -121,9 +121,9 @@
                                     <th>Valor Total Estimado $</th>
                                     <th>Descripción del Objeto Contractual</th>
                                     <th>Valor Estimado en Vigencia Actual $</th>
-                                    <th>¿Se Requiere Proyecto?</th>
+                                    {{-- <th>¿Se Requiere Proyecto?</th> --}}
                                     <th>Dependencia o Area Responsable:</th>
-                                    <th>Código Banco De Programas Y Proyectos De Inversión Nacional--BPIN:</th>
+                                    {{-- <th>Código Banco De Programas Y Proyectos De Inversión Nacional--BPIN:</th> --}}
                                     <th>¿Se Requiere POAI?</th>
                                     <th>Tipo de Zona de Ejecucion del Contrato</th>
                                     <th>Tipo de Adquisición o Contrato</th>
@@ -149,9 +149,9 @@
                                         <td>{{ $planadquisicion->valorestimadocont }} COP</td>
                                         <td>{{ $planadquisicion->descripcioncont }}</td>
                                         <td>{{ $planadquisicion->valorestimadovig }} COP</td>
-                                        <td>{{ $planadquisicion->requiproyecto->detproyeto ?? 'N/A' }}</td>
+                                        {{-- <td>{{ $planadquisicion->requiproyecto->detproyeto ?? 'N/A' }}</td> --}}
                                         <td>{{ $planadquisicion->area->nomarea ?? 'N/A' }}</td>
-                                        <td>{{ $planadquisicion->codbpim ?? 'N/A' }}</td>
+                                        {{-- <td>{{ $planadquisicion->codbpim ?? 'N/A' }}</td> --}}
                                         <td>{{ $planadquisicion->requipoai->detpoai ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->tipozona->tipozona ?? 'N/A' }}</td>
                                         <td>{{ $planadquisicion->tipoadquisicione->dettipoadquisicion ?? 'N/A' }}</td>

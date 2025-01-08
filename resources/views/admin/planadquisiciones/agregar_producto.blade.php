@@ -76,7 +76,7 @@
             <!-- /.card -->
             <div class="row">
                 <div class="col-12 mb-2">
-                    <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancelar</a>
+                    {{-- <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancelar</a> --}}
                     <input type="submit" value="Registrar" class="btn btn-primary float-right">
                 </div>
             </div>

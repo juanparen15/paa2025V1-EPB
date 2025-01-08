@@ -39,8 +39,8 @@
                     <div class="row">
                         <div class="col-sm-4 invoice-col">
                             <address>
-                                <strong>SIIPAA</strong><br>
-                                {{-- <strong>SIIPAA {{ request('vigencia') ?? date('Y') }}</strong><br> --}}
+                                {{-- <strong>SIIPAA</strong><br> --}}
+                                <strong>SIIPAA {{ request('vigencia') ?? date('Y') }}</strong><br>
                                 {{ $planadquisicione->id_vigencia }}
                             </address>
                         </div>
@@ -81,19 +81,19 @@
                             </address>
                         </div>
 
-                        <div class="col-sm-4 invoice-col">
+                        {{-- <div class="col-sm-4 invoice-col">
                             <address>
-                                <strong>¿Se Requiere Protecto?</strong><br>
+                                <strong>¿Se Requiere Proyecto?</strong><br>
                                 {{ $planadquisicione->requiproyecto->detproyeto }}
                             </address>
-                        </div>
+                        </div> --}}
 
-                        <div class="col-sm-4 invoice-col">
+                        {{-- <div class="col-sm-4 invoice-col">
                             <address>
                                 <strong>Código Banco De Programas Y Proyectos De Inversión Nacional--BPIN:</strong><br>
                                 {{ $planadquisicione->codbpim ?? 'N/A' }}
                             </address>
-                        </div>
+                        </div> --}}
 
                         <div class="col-sm-4 invoice-col">
                             <address>

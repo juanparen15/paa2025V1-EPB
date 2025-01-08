@@ -47,9 +47,9 @@ class PlanadquisicioneController extends Controller
             ->pluck('year');
 
         // Cambiar la vigencia predeterminada a 2025
-        //     $vigencia = $request->get('vigencia', date('Y'));
+            $vigencia = $request->get('vigencia', date('Y'));
 
-        $vigencia = $request->get('vigencia', '2025');
+        // $vigencia = $request->get('vigencia', '2025');
 
         if (auth()->user()->hasRole('Admin')) {
             $planadquisiciones = Planadquisicione::whereYear('created_at', $vigencia)->get();
@@ -99,7 +99,7 @@ class PlanadquisicioneController extends Controller
             'modalidade_id' => ['required'],
             // 'tipoproceso_id' => ['required'],
             'tipoadquisicione_id' => ['required'],
-            'requiproyecto_id' => ['required'],
+            // 'requiproyecto_id' => ['required'],
             'fuente_id' => ['required'],
             'tipoprioridade_id' => ['required'],
             'mese_id' => ['required'],
@@ -190,7 +190,7 @@ class PlanadquisicioneController extends Controller
             'modalidade_id' => ['required'],
             // 'tipoproceso_id' => ['required'],
             'tipoadquisicione_id' => ['required'],
-            'requiproyecto_id' => ['required'],
+            // 'requiproyecto_id' => ['required'],
             'fuente_id' => ['required'],
             'tipoprioridade_id' => ['required'],
             'mese_id' => ['required'],
