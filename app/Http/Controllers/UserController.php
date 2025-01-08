@@ -39,7 +39,9 @@ class UserController extends Controller
             'password' => ['required'],
             'apellido' => ['required'],
             'telefono' => ['required'],
-            'documento' => ['required']
+            'documento' => ['required'],
+            'areas_id' => ['required', 'exists:areas,id'],
+            'role' => ['required', 'exists:roles,name']
         ]);
 
         $user = User::create([
@@ -48,7 +50,8 @@ class UserController extends Controller
             'password' => Hash::make($request->password),
             'apellido' => $request->apellido,
             'telefono' => $request->telefono,
-            'documento' => $request->documento
+            'documento' => $request->documento,
+            'areas_id' => $request->areas_id
         ]);
 
         //avatar
@@ -62,6 +65,7 @@ class UserController extends Controller
 
 
         $user->assignRole($request->role);
+
         return redirect()->route('users.index')->with('flash', 'registrado');
     }
     public function show(User $user)
@@ -79,20 +83,35 @@ class UserController extends Controller
     {
         $request->validate([
             'name' => ['required'],
-            'email' => ['required'],
-            'password' => ['required'],
+            'email' => ['required', 'email', 'unique:users,email,' . $user->id],
+            // 'password' => ['required'],
             'apellido' => ['required'],
             'telefono' => ['required'],
-            'documento' => ['required']
+            'documento' => ['required'],
+            'areas_id' => ['required', 'exists:areas,id'],
+            'role' => ['required', 'exists:roles,name']
         ]);
         $user->update([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => Hash::make($request->password),
+            // 'password' => Hash::make($request->password),
             'apellido' => $request->apellido,
             'telefono' => $request->telefono,
-            'documento' => $request->documento
+            'documento' => $request->documento,
+            'areas_id' => $request->areas_id
         ]);
+
+        $data = $request->only(['name', 'email', 'apellido', 'telefono', 'documento']);
+
+        // Actualizar la contraseña solo si no está vacía
+        if (!empty($request->password)) {
+            $request->validate([
+                'password' => ['confirmed', 'min:6']
+            ]);
+            $data['password'] = Hash::make($request->password);
+        }
+
+        $user->update($data);
 
         if ($request->hasFile('avatar')) {
             $file = $request->file('avatar');

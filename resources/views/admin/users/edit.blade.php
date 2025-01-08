@@ -63,7 +63,19 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="apellido">Nombres y Apellidos del Responsable</label>
+                                <label for="name">Nombres del Responsable</label>
+                                <input type="text" id="name" name="name" value="{{ old('name', $user->name) }}"
+                                    class="form-control @error('name') is-invalid @enderror">
+                                @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label for="apellido">Apellidos del Responsable</label>
                                 <input type="text" id="apellido" name="apellido"
                                     value="{{ old('apellido', $user->apellido) }}"
                                     class="form-control @error('name') is-invalid @enderror">
@@ -89,7 +101,7 @@
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label for="documento">Número de documento del Responsable</label>
+                                <label for="documento">Número de Documento del Responsable</label>
                                 <input type="number" id="documento" name="documento"
                                     value="{{ old('documento', $user->documento) }}"
                                     class="form-control @error('name') is-invalid @enderror">
@@ -140,12 +152,27 @@
                                 @enderror
                             </div>
                         </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Foto de Perfil</label>
+                                <div class="custom-file">
 
+                                    <input type="file" name="avatar" class="custom-file-input" id="avatar"
+                                        lang="es">
+                                    <label class="custom-file-label" for="avatar">Seleccionar Archivo</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <p class="text-muted">Deja los campos de contraseña en blanco si no deseas cambiarla.</p>
+                            </div>
+                        </div>
                         <div class="col-md-6">
                             <div class="form-group">
                                 <label for="password">Contraseña</label>
                                 <input type="password" id="password" name="password"
-                                    class="form-control @error('password') is-invalid @enderror" required
+                                    class="form-control @error('password') is-invalid @enderror"
                                     autocomplete="new-password">
                                 @error('password')
                                     <span class="invalid-feedback" role="alert">
@@ -158,21 +185,10 @@
                             <div class="form-group">
                                 <label for="password-confirm">Confirmar Contraseña</label>
                                 <input type="password" id="password-confirm" name="password_confirmation"
-                                    class="form-control" required autocomplete="new-password">
+                                    class="form-control" autocomplete="new-password">
                             </div>
                         </div>
 
-                        <div class="col-md-12">
-                            <div class="form-group">
-                                <label>Foto de Perfil</label>
-                                <div class="custom-file">
-
-                                    <input type="file" name="avatar" class="custom-file-input" id="avatar"
-                                        lang="es">
-                                    <label class="custom-file-label" for="avatar">Seleccionar Archivo</label>
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
                 <!-- /.card-body -->

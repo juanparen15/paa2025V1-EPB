@@ -43,13 +43,37 @@
                                     <div class="form-row">
                                         <div class="col-md-8">
 
-                                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Correo electrónico
+                                            <strong><i class="fas fa-envelope mr-1"></i> Correo electrónico
                                                 Institucional</strong>
                                             <p class="text-muted">
                                                 {{ $user->email }}
                                             </p>
                                             <hr>
-                                            <div class="form-group">
+                                            <strong><i class="fas fa-map-marker-alt mr-1"></i> Nombre del Area o
+                                                Dependencia</strong>
+                                            <p class="text-muted">
+                                                {{ $user->area->nomarea }}
+                                            </p>
+                                            <hr>
+                                            <strong><i class="fas fa-user mr-1"></i> Nombres y
+                                                Apellidos del Responsable</strong>
+                                            <p class="text-muted">
+                                                {{ $user->name . ' ' . $user->apellido }}
+                                            </p>
+                                            <hr>
+                                            <strong><i class="fas fa-mobile mr-1"></i> Teléfono</strong>
+                                            <p class="text-muted">
+                                                {{ $user->telefono }}
+                                            </p>
+                                            <hr>
+                                            <strong><i class="fas fa-id-card mr-1"></i> Número de
+                                                documento del Responsable</strong>
+                                            <p class="text-muted">
+                                                {{ $user->documento }}
+                                            </p>
+                                            <hr>
+
+                                            {{-- <div class="form-group">
                                                 <label for="name"><i class="fas fa-book mr-1"></i> Nombre del Area o
                                                     Dependencia </label>
                                                 <input type="text" id="name" name="name"
@@ -60,8 +84,8 @@
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
-                                            </div>
-                                            <div class="form-group">
+                                            </div> --}}
+                                            {{-- <div class="form-group">
                                                 <label for="apellido"><i class="far fa-file-alt mr-1"></i> Nombres y
                                                     Apellidos del Responsable</label>
                                                 <input type="text" id="apellido" name="apellido"
@@ -72,8 +96,8 @@
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
-                                            </div>
-                                            <div class="form-group">
+                                            </div> --}}
+                                            {{-- <div class="form-group">
                                                 <label for="telefono"><i
                                                         class="fas fa-map-marker-alt mr-1"></i>Teléfono</label>
                                                 <input type="text" id="telefono" name="telefono"
@@ -84,8 +108,8 @@
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
-                                            </div>
-                                            <div class="form-group">
+                                            </div> --}}
+                                            {{-- <div class="form-group">
                                                 <label for="documento"><i class="fas fa-map-marker-alt mr-1"></i> Número de
                                                     documento del Responsable</label>
                                                 <input type="number" id="documento" name="documento"
@@ -96,14 +120,7 @@
                                                         <strong>{{ $message }}</strong>
                                                     </span>
                                                 @enderror
-                                            </div>
-
-                                            <div class="col-sm-4 invoice-col">
-                                                <address>
-                                                    <strong>Dependencia o Área</strong><br>
-                                                    {{ $user->area->nomarea ?? 'No especificado' }}
-                                                </address>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                         <div class="col-md-4">
                                             <div class="text-center mb-3">
@@ -113,7 +130,7 @@
                                             </div>
 
 
-                                            <div class="col-md-12">
+                                            {{-- <div class="col-md-12">
                                                 <div class="form-group">
                                                     <label>Cambiar Foto de Perfil</label>
                                                     <div class="custom-file">
@@ -123,7 +140,7 @@
                                                             Archivo</label>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
 
                                         </div>
                                     </div>
@@ -133,9 +150,9 @@
                             </div>
                             <div class="card-footer">
 
-                                <a href="{{ URL::previous() }}" class="btn btn-secondary">Cancel</a>
+                                <a href="{{ URL::previous() }}" class="btn btn-secondary">Regresar</a>
 
-                                <button type="submit" class="btn btn-primary float-right">Actualizar</button>
+                                {{-- <button type="submit" class="btn btn-primary float-right">Actualizar</button> --}}
 
                             </div>
 

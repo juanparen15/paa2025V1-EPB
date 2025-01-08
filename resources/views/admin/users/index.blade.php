@@ -55,6 +55,7 @@
                             <thead>
                                 <tr>
                                     <th>ID</th>
+                                    <th>Nombre del Area o Dependencia</th>
                                     <th>Nombres y Apellidos del Responsable</th>
                                     <th>Correo electrónico Institucional</th>
                                     <th>Rol</th>
@@ -67,9 +68,10 @@
                                         <td>{{ $user->id }}</td>
                                         <td>
                                             <a href="{{ route('users.show', $user) }}">
-                                                {{ $user->name }}
+                                                {{ $user->area->nomarea ?? 'Área no asignada' }}
                                             </a>
                                         </td>
+                                        <td>{{ $user->name . ' ' . $user->apellido }}</td>
                                         <td>{{ $user->email }}</td>
                                         <td>
                                             @foreach ($user->getRoleNames() as $role)
